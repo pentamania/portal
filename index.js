@@ -1,4 +1,8 @@
 
+// firefox, safariで「戻る」した時に画面効果が残ってしまう対策
+// http://www.gravity-works.jp/gravica/web/js/004374.html
+window.onunload = function(){};
+
 // create DOM link
 PATHS.forIn(function(key, value) {
   //console.log([index, key, value].join(','));
