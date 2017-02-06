@@ -12,5 +12,5 @@ PATHS.forIn(function(key, value) {
 });
 
 window.onload = function() {
-  PORTAL.app();
+  PORTAL.app(PATHS);
 };

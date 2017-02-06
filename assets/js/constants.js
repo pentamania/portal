@@ -1,11 +1,8 @@
-var windowWidth = window.innerWidth;
-var $host = location.host;
 //var SCREEN_WIDTH = (windowWidth > 480) ? 768 : 360;
-var SCREEN_WIDTH = windowWidth-20; //画面いっぱいだと横スクロールしてしまうため
+var SCREEN_WIDTH = window.innerWidth-20; //画面いっぱいだと横スクロールしてしまうため
 var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
-var SPRITES = new Array;
 var ICON_SIZE = 52; // 26*26の正方形
 
 //abc順

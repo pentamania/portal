@@ -3,7 +3,7 @@ enchant();
 
 var AnchoredIcon = Class.create(PhyCircleSprite, {
   initialize: function (x, y, image, frameIndex, anchor){
-    PhyCircleSprite.call(this, ICON_SIZE/2, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true); //初期化
+    PhyCircleSprite.call(this, ICON_SIZE/2, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
     this.image = image;
     this.frame = frameIndex || 0;
     this.scale = 2;
@@ -22,7 +22,6 @@ var AnchoredIcon = Class.create(PhyCircleSprite, {
       // if (!ret) return
       this.transAnim();
       location.href = this.anchor;
-      console.log(this.anchor);
     };
     //if (this.isTargeted === false) {
     //    //this.addChild(lock);
