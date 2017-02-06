@@ -87,7 +87,8 @@ window.onload = function(){
         'assets/images/icons_big.png',
         'assets/images/icons.png'
     );
-    core.fps = (navigator.userAgent.indexOf("Firefox")>-1) ? 30 : 60; //firefoxだとカクカク
+    // core.fps = (navigator.userAgent.indexOf("Firefox")>-1) ? 30 : 60; //firefoxだとカクカク
+    core.fps = 60; //firefoxだとカクカク
     core.onload = function(){
         //物理世界の構築
         var world = new PhysicsWorld(0.0, 0.0); //第一項目がｘ軸の重力、第二項目がｙ軸の重力
