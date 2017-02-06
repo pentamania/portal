@@ -9,19 +9,7 @@
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
 
         <script>
-            //Objectの拡張: http://qiita.com/phi/items/98975e1bb4995c1f1bcf
-            //Box2dWebを読み込む前に実行する
-            Object.defineProperty(Object.prototype, "forIn", {
-                value: function(fn, self) {
-                    self = self || this;
 
-                    Object.keys(this).forEach(function(key, index) {
-                        var value = this[key];
-
-                        fn.call(self, key, value, index);
-                    }, this);
-                }
-            });
         </script>
         <title>portamania</title>
         <link rel="shortcut icon" href="assets/images/favicon.ico" >
@@ -58,9 +46,10 @@
         <script type="text/javascript" src="assets/libs/enchant.min.js"></script>
         <script type="text/javascript" src="assets/libs/Box2dWeb-2.1.a.3.js"></script>
         <!--plugin-->
-        <script type="text/javascript" src="assets/libs/box2d.enchant.js"></script>
+        <!-- <script type="text/javascript" src="assets/libs/box2d.enchant.js"></script> -->
         <script type="text/javascript" src="assets/libs/PhySprite.enchant.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
+
+        <script type="text/javascript" src="index.js"></script>
         <!-- [FC2 Analyzer] http://analyzer.fc2.com/  -->
         <script language="javascript" src="http://analyzer55.fc2.com/ana/processor.php?uid=2131777" type="text/javascript"></script>
         <noscript><div align="right"><img src="http://analyzer55.fc2.com/ana/icon.php?uid=2131777&ref=&href=&wid=0&hei=0&col=0" /></div></noscript>

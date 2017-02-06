@@ -1,3 +1,18 @@
+(function(){
+    //Objectの拡張: http://qiita.com/phi/items/98975e1bb4995c1f1bcf
+    Object.defineProperty(Object.prototype, "forIn", {
+        value: function(fn, self) {
+            self = self || this;
+
+            Object.keys(this).forEach(function(key, index) {
+                var value = this[key];
+
+                fn.call(self, key, value, index);
+            }, this);
+        }
+    });
+}());
+
 enchant();
 var windowWidth = window.innerWidth;
 
@@ -10,7 +25,7 @@ var SPRITES = new Array;
 var ICON_SIZE = 52; // 26*26の正方形
 
 var $host = location.host;
-console.log($host);
+// console.log($host);
 //abc順
 var path = {
     blog: {

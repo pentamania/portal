@@ -108,7 +108,7 @@ enchant.PhysicsWorld = enchant.Class.create({
     *   var physicsWorld = new PhysicsWorld(0, 9.8);
     *   //無重力
     *   var physicsWorld = new PhysicsWorld(0, 0);
-    * 
+    *
     * @param {Number} [gravityX] x軸方向への引力.
     * @param {Number} [gravityY] y軸方向への引力.
     * @constructs
@@ -139,7 +139,7 @@ enchant.PhysicsWorld = enchant.Class.create({
     *   //ぶつかった2つのSpriteを消す
     *   physicsWorld.contact(function (sprite1, sprite2) {
     *       sprite1.destroy();
-    *       sprite2.destroy(); 
+    *       sprite2.destroy();
     *   });
     *
     * @param {function(sprite1:enchant.PhySprite,sprite2:enchant.PhySprite)} [func] 当たり判定時の処理
@@ -282,10 +282,14 @@ enchant.PhySprite = enchant.Class.create(enchant.Sprite, {
         this.addEventListener(enchant.Event.ENTER_FRAME, function (e) {
             this.x = this.x;
             this.y = this.y;
-            if (time % 2) {   //なぜか移動と回転を一緒にできない。謎。
-                this.rotation = this.angle;
-            }
-            time = (time + 1) % 2;
+            // fix: pentamania
+            // if (time % 2) {   //なぜか移動と回転を一緒にできない。謎。
+            //     this.rotation = this.angle;
+            // }
+            // time = (time + 1) % 2;
+            this.rotation = this.angle;
+            time++;
+            time = time % 2;
         });
     },
     /**
@@ -652,9 +656,9 @@ enchant.PhySprite = enchant.Class.create(enchant.Sprite, {
     * @example
     *   //bearに当たったSpriteを消す
     *   bear.contact(function (sprite) {
-    *      sprite.destroy(); 
+    *      sprite.destroy();
     *   });
-    * 
+    *
     * @param {function(sprite:enchant.PhySprite)} [func] ぶつかったSpriteを引数とする関数
     */
     contact: function (func) {
@@ -706,7 +710,7 @@ enchant.PhyBoxSprite = enchant.Class.create(enchant.PhySprite, {
     * @example
     *   var bear = new PhyBoxSprite(32, 32, DYNAMIC_SPRITE, 1.0, 0.5, 0.3, true);
     *   bear.image = game.assets['chara1.gif'];
-    * 
+    *
     * @param {Number} [width] Spriteの横幅.
     * @param {Number} [height] Spriteの高さ.
     * @param {Boolean} [type] 静的,動的,キネマティック
@@ -735,7 +739,7 @@ enchant.PhyCircleSprite = enchant.Class.create(enchant.PhySprite, {
     * @example
     *   var bear = new PhyCircleSprite(16, DYNAMIC_SPRITE, 1.0, 0.5, 0.3, true);
     *   bear.image = game.assets['chara1.gif'];
-    * 
+    *
     * @param {Number} [radius] Spriteの半径.
     * @param {Boolean} [type] 静的,動的,キネマティック
     * @param {Number} [density] Spriteの密度.
@@ -874,7 +878,7 @@ enchant.PhyDistanceJoint = enchant.Class.create(enchant.BaseJoint, {
         }
     },
     /**
-    * 応答速度. 
+    * 応答速度.
     * @type {Number}
     */
     frequencyHz: {
@@ -893,7 +897,7 @@ enchant.PhyDistanceJoint = enchant.Class.create(enchant.BaseJoint, {
 */
 enchant.PhyRevoluteJoint = enchant.Class.create(enchant.BaseJoint, {
     /**
-    * 物体と物体のモーター付きジョイント 
+    * 物体と物体のモーター付きジョイント
     * @example
     * //軸
     * var axis = new PhyCircleSprite(8, STATIC_SPRITE);
@@ -1047,7 +1051,7 @@ enchant.PhyPulleyJoint = enchant.Class.create(enchant.BaseJoint, {
 */
 enchant.PhyPrismaticJoint = enchant.Class.create(enchant.BaseJoint, {
     /**
-    * スライドジョイント    
+    * スライドジョイント
     * @example
     * var box = new PhyBoxSprite(16, 8, DYNAMIC_SPRITE, 1.0, 0.5, 0.2, true);
     * box.position = { x: game.width * 2 / 3, y: game.height / 2 };
