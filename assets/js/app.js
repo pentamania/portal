@@ -9,9 +9,10 @@ PORTAL.start = function(anchorData) {
   core.preload(
     'assets/images/yukkuris.gif',
     // 'assets/images/icons.png',
+    // 'assets/images/spritesheet.json',
     'assets/images/icons_big.png'
   );
-  core.onload = function(){
+  core.onload = function() {
     var iconSprites = [];
     var world = new PhysicsWorld(0.0, 0.0); //第一項目がｘ軸の重力、第二項目がｙ軸の重力
     var scene = core.rootScene;
@@ -40,7 +41,7 @@ PORTAL.start = function(anchorData) {
       iconSprites.push(icon);
     });
 
-    // player召喚： ゆっくり
+    // player召喚
     var player = new PhyCircleSprite(16, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
     player.image = yukkuriImages;
     player.frame = 1;
