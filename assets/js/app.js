@@ -20,6 +20,11 @@
     }.bind(this))
   };
 
+  enchant.Node.prototype.addChildTo = function(parent) {
+    parent.addChild(this);
+    return this;
+  };
+
 }());
 
 var PORTAL = PORTAL || {};
@@ -68,11 +73,11 @@ PORTAL.app = function(anchorData) {
     var player = new PhyCircleSprite(16, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
     player.image = yukkuriImages;
     player.frame = 1;
-    player.scale(2,2);
+    player.scale(2, 2);
     player.position = {x: SCREEN_WIDTH/3, y:SCREEN_HEIGHT/3};
     //var player = new AnchoredIcon(SCREEN_WIDTH/3, SCREEN_HEIGHT/3, iconImages, 3);
     iconSprites.push(player);
-    player.addEventListener ('enterframe', function() {
+    player.on('enterframe', function() {
       // 十字キー操作
       var force = 0.5;
       if (core.input.left) this.applyImpulse({ x: -force, y: 0 });
@@ -80,14 +85,14 @@ PORTAL.app = function(anchorData) {
       if (core.input.up) this.applyImpulse({ x: 0, y: -force });
       if (core.input.down) this.applyImpulse({ x: 0, y: force });
     });
-    player.addEventListener('touchstart', function(){
+    player.on('touchstart', function(){
       var yukkuri = confirm("ゆっくりしていってね!!");
       if (yukkuri) return;
       location.href = "http://google.com";
     });
 
     iconSprites.forEach(function(sprite) {
-      sprite.addEventListener('enterframe', function(e){
+      sprite.on('enterframe', function(e){
         //ゆらゆらさせる
         if (core.frame%2 === 0) {
           sprite.applyImpulse({ x: 0.2, y: 0.1 });
@@ -107,34 +112,36 @@ PORTAL.app = function(anchorData) {
     });
 
     // 天井、床、側カベ
-    var floor = new Wall(SCREEN_WIDTH/2, SCREEN_HEIGHT, SCREEN_WIDTH, wallWidth);
-    var ceiling = new Wall(SCREEN_WIDTH/2, 0, SCREEN_WIDTH, wallWidth);
-    var leftWall = new Wall(0, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT);
-    var rightWall = new Wall(SCREEN_WIDTH, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT);
+    var floor = new Wall(SCREEN_WIDTH/2, SCREEN_HEIGHT, SCREEN_WIDTH, wallWidth).addChildTo(scene);
+    var ceiling = new Wall(SCREEN_WIDTH/2, 0, SCREEN_WIDTH, wallWidth).addChildTo(scene);
+    var leftWall = new Wall(0, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT).addChildTo(scene);
+    var rightWall = new Wall(SCREEN_WIDTH, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT).addChildTo(scene);
 
     // 回転オブジェクト（x,y,幅,高さ,回転速度）
     var rotatingBarHeight = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
-    var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, rotatingBarHeight, 200);
+    var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, rotatingBarHeight, 200).addChildTo(scene);
 
     // ラベル
-    var label = new Label("アイコンクリックで各サイトにジャンプ！");
-    label.x = SCREEN_WIDTH/20;
-    label.y = SCREEN_HEIGHT/20;
-    label.width = SCREEN_WIDTH;
-    label.color = 'white';
-    //label.font = '15px "Impact"';
-    label.font = "18px 'MSゴシック'";
+    var label_info = new MyLabel(
+      "アイコンクリックで各サイトにジャンプ",
+      SCREEN_WIDTH/20,
+      SCREEN_HEIGHT/20
+    ).addChildTo(scene);
+    label_info.width = SCREEN_WIDTH;
+    label_info.rotate(-10);
 
     // ヒント
-    var label_aboutPlayer = new Label("方向キーを押すと?");
-    label_aboutPlayer.x = SCREEN_WIDTH*0.8;
-    label_aboutPlayer.y = SCREEN_HEIGHT*0.8;
-    label_aboutPlayer.color = 'limegreen';
+    var label_aboutPlayer = new MyLabel(
+      "方向キーで操作だ",
+      SCREEN_WIDTH * 0.8,
+      SCREEN_HEIGHT * 0.8
+    ).addChildTo(scene);
+    label_aboutPlayer.textAlign = "left";
+    label_aboutPlayer.rotate(-10);
 
-    scene.addChildren([
-      floor, ceiling, leftWall, rightWall, rotatingBar,
-      label, label_aboutPlayer
-    ]);
+    // scene.addChildren([
+    //   floor, ceiling, leftWall, rightWall, rotatingBar,
+    // ]);
 
     scene.onenterframe = function(e){
       //物理シミュレーション内の時間を進める
@@ -151,10 +158,10 @@ PORTAL.app = function(anchorData) {
       //}
     };
 
-    //リサイズ対策
-    window.addEventListener('resize', function(){
-      var windowWidth = window.innerWidth;
-      var centerX = windowWidth / 2;
+    // リサイズ対策
+    // window.addEventListener('resize', function(){
+    //   var windowWidth = window.innerWidth;
+    //   var centerX = windowWidth / 2;
 
       //core.width = winWidth; //canvasサイズ変更
       //ceiling.width = winWidth;
@@ -165,7 +172,7 @@ PORTAL.app = function(anchorData) {
       //var floor = new Wall(centerX, SCREEN_HEIGHT, SCREEN_WIDTH, wallWidth);
       //rightWall.x = winWidth-20;
       //console.log(ceiling.x);
-    });
+    // });
 
   }; //--core.onload
 

@@ -88,3 +88,14 @@ var RotatingRect = Class.create(PhyBoxSprite, {
     .loop();
   }
 });
+
+var MyLabel =  Class.create(Label, {
+  initialize: function(text, x, y, font, color) {
+    Label.call(this, text);
+    x = x || 0;
+    y = y || 0;
+    this.moveTo(x, y);
+    this.font = font || "18px 'MSゴシック'";
+    this.color = color || 'white';
+  }
+});
