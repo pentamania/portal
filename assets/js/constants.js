@@ -3,14 +3,21 @@ var SCREEN_WIDTH = window.innerWidth - 20; //画面いっぱいだと横スク�
 var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
-var ICON_SIZE = 52; // 26*26の正方形
-var DEBUG_MODE = true;
-// var DEBUG_MODE = false;
 
-//abc順
+var DEBUG_MODE = false;
+DEBUG_MODE = true;
+var ASSETS = {
+  spritemap: 'assets/images/spritesheet.json',
+  // icons: 'assets/images/icons_big.png',
+  icons: 'assets/images/spritesheet.png',
+  yukkuri: 'assets/images/yukkuris.gif',
+}
+
+// abc順
 var PATHS = {
   blog: {
     url: "http://pentamania.hatenablog.com/",
+    label: "BLOG",
     frameIndex: 0
   },
   deviantArt: {
@@ -33,12 +40,17 @@ var PATHS = {
     url: "http://twitter.com/p3ntamania",
     frameIndex: 8
   },
-  // apps: {
-  //     url: $host+"/apps.html",
-  //     frameIndex: 5
+  github: {
+    url: "http://github.com/pentamania",
+  },
+  // games: {
+  //   url: $host+"/apps.html",
+  //   frameIndex: 5
   // },
-
-  //tumblr:"http://tumblr/pentamania",
+  // art: {
+  //   url: $host+"/apps.html",
+  //   frameIndex: 5
+  // },
 
   //apps: "http://pentamania.com/apps",
   //works: "http://pentamania.com/works",

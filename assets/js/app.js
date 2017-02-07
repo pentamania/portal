@@ -3,23 +3,18 @@ var PORTAL = PORTAL || {};
 PORTAL.start = function(anchorData) {
   // var field = document.getElementById("enchant-stage");
   // var fieldBounds = field.getBoundingClientRect(); //cssで余計なプロパティをつけないこと
+  // var isTransed = false; // 遷移中
 
   var core = new Core(SCREEN_WIDTH, SCREEN_HEIGHT);
   core.fps = 60;
-  core.preload(
-    'assets/images/yukkuris.gif',
-    // 'assets/images/icons.png',
-    // 'assets/images/spritesheet.json',
-    'assets/images/icons_big.png'
-  );
-  core.onload = function() {
+  core.preload(ASSETS)
+  .onload = function() {
+    var wallWidth = 2;
     var iconSprites = [];
-    var world = new PhysicsWorld(0.0, 0.0); //第一項目がｘ軸の重力、第二項目がｙ軸の重力
+    var assets = core.assets;
     var scene = core.rootScene;
     scene.backgroundColor = 'rgba(150, 0, 150, 0)';
-    var iconImages = core.assets['assets/images/icons_big.png'];
-    var yukkuriImages = core.assets['assets/images/yukkuris.gif'];
-    var wallWidth = 2;
+    var world = new PhysicsWorld(0.0, 0.0); //第一項目がｘ軸の重力、第二項目がｙ軸の重力
 
     // マウス: 空のsprite、うまく動作せず
     //var mouse = new Sprite(16, 16);
@@ -31,19 +26,25 @@ PORTAL.start = function(anchorData) {
     //scene.addChild(mouse);
 
     // アイコン召喚
+    var frames = JSON.parse(assets['spritemap']).frames;
     anchorData.forIn(function(key, value) {
+      var sprite = frames[key];
+      if (!sprite) return;
+
+      var frameSize = sprite.sourceSize.w; // TEMP: 52
+      var frameIndex = Math.floor(sprite.frame.x / frameSize);
       var randPos = {
         x: Math.randint(SCREEN_WIDTH),
         y: Math.randint(SCREEN_HEIGHT)
       };
-      var frameIndex =  value.frameIndex;
-      var icon = new AnchoredIcon(randPos.x, randPos.y, iconImages, frameIndex, value.url);
+      var icon = new AnchoredIcon(assets['icons'], frameSize/2, frameIndex, value.url);
+      icon.position = randPos;
       iconSprites.push(icon);
     });
 
     // player召喚
     var player = new PhyCircleSprite(16, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
-    player.image = yukkuriImages;
+    player.image = assets['yukkuri'];
     player.frame = 1;
     player.scale(2, 2);
     player.position = {x: SCREEN_WIDTH/3, y:SCREEN_HEIGHT/3};
@@ -159,4 +160,4 @@ PORTAL.start = function(anchorData) {
   } else {
     core.start();
   }
-}
+};

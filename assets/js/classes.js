@@ -2,14 +2,12 @@
 enchant();
 
 var AnchoredIcon = Class.create(PhyCircleSprite, {
-  initialize: function (x, y, image, frameIndex, anchor){
-    PhyCircleSprite.call(this, ICON_SIZE/2, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
+  initialize: function (image, radius, frameIndex, anchor) {
+    PhyCircleSprite.call(this, radius, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
     this.image = image;
     this.frame = frameIndex || 0;
-    this.scale = 2;
     this.anchor = anchor || null;
     this.isTargeted = true;
-    this.position = {x: x||0, y: y||0};
     this.duration = 30;
   },
 
