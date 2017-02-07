@@ -1,6 +1,10 @@
 'use strict';
 enchant();
 
+Math.randint = function(n) {
+  return Math.floor(Math.random() * (n+1));
+};
+
 var AnchoredIcon = Class.create(PhyCircleSprite, {
   initialize: function (x, y, image, frameIndex, anchor){
     PhyCircleSprite.call(this, ICON_SIZE/2, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
@@ -89,13 +93,40 @@ var RotatingRect = Class.create(PhyBoxSprite, {
   }
 });
 
+
 var MyLabel =  Class.create(Label, {
   initialize: function(text, x, y, font, color) {
     Label.call(this, text);
     x = x || 0;
     y = y || 0;
     this.moveTo(x, y);
-    this.font = font || "18px 'MSゴシック'";
+    this.fontSize = 18;
+    this.font = font || this.fontSize+"px 'MSゴシック'";
     this.color = color || 'white';
+    this.textAlign = "center";
+    this._baseRotation = 0;
+    this._shakeing = false;
+    this.height = this.fontSize * 1.25;
+  },
+
+  setBaseRotation: function(degree) {
+    this.rotation = degree;
+    this._baseRotation = degree;
+    return this;
+  },
+
+  shakeAnim: function(range) {
+    if (this._shakeing) return this;
+
+    this._shakeing = true;
+    var func = function() {
+      // var gap = range;
+      var gap = Math.randint(range);
+      if (this.age%2 === 0) gap *= -1;
+      this.rotation = this._baseRotation + gap;
+    }
+    this.on('enterframe', func.bind(this));
+
+    return this;
   }
 });

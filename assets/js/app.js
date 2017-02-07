@@ -20,6 +20,12 @@
     }.bind(this))
   };
 
+  enchant.Entity.prototype.setOrigin = function(x, y) {
+    this.originX = this.width * x || 0;
+    this.originY = this.height * y || 0;
+    return this;
+  };
+
   enchant.Node.prototype.addChildTo = function(parent) {
     parent.addChild(this);
     return this;
@@ -123,21 +129,27 @@ PORTAL.app = function(anchorData) {
 
     // ラベル
     var label_info = new MyLabel(
-      "アイコンクリックで各サイトにジャンプ",
-      SCREEN_WIDTH/20,
-      SCREEN_HEIGHT/20
-    ).addChildTo(scene);
-    label_info.width = SCREEN_WIDTH;
-    label_info.rotate(-10);
+      "アイコンクリックで各サイトにジャンプ！",
+      SCREEN_WIDTH / 20,
+      SCREEN_HEIGHT * 0.25
+    ).addChildTo(scene)
+    .setOrigin(0.2, 0.5)
+    .setBaseRotation(-8)
+    .shakeAnim(1)
+    ;
+    label_info.width = SCREEN_WIDTH / 2;
+    // label_info.height = SCREEN_HEIGHT / 8;
 
     // ヒント
     var label_aboutPlayer = new MyLabel(
-      "方向キーで操作だ",
-      SCREEN_WIDTH * 0.8,
-      SCREEN_HEIGHT * 0.8
-    ).addChildTo(scene);
-    label_aboutPlayer.textAlign = "left";
-    label_aboutPlayer.rotate(-10);
+      "方向キーで操作",
+      SCREEN_WIDTH * 0.6,
+      SCREEN_HEIGHT * 0.6
+    ).addChildTo(scene)
+    .setOrigin(1.0, 0.5)
+    .setBaseRotation(-10)
+    .shakeAnim(1)
+    ;
 
     // scene.addChildren([
     //   floor, ceiling, leftWall, rightWall, rotatingBar,
@@ -174,7 +186,11 @@ PORTAL.app = function(anchorData) {
       //console.log(ceiling.x);
     // });
 
-  }; //--core.onload
+  };
 
-  core.start();
+  if (DEBUG_MODE) {
+    core.debug();
+  } else {
+    core.start();
+  }
 }

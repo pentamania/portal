@@ -4,6 +4,8 @@ var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
 var ICON_SIZE = 52; // 26*26の正方形
+var DEBUG_MODE = true;
+// var DEBUG_MODE = false;
 
 //abc順
 var PATHS = {
