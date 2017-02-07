@@ -1,10 +1,6 @@
 'use strict';
 enchant();
 
-Math.randint = function(n) {
-  return Math.floor(Math.random() * (n+1));
-};
-
 var AnchoredIcon = Class.create(PhyCircleSprite, {
   initialize: function (x, y, image, frameIndex, anchor){
     PhyCircleSprite.call(this, ICON_SIZE/2, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
@@ -16,11 +12,13 @@ var AnchoredIcon = Class.create(PhyCircleSprite, {
     this.position = {x: x||0, y: y||0};
     this.duration = 30;
   },
-  onenterframe: function(){
+
+  onenterframe: function() {
     //(core.frame%10==0) ? this.frame = 2 : this.frame = 3;
     //if (core.input.left) this.applyImpulse({ x: -0.4, y: 0 });
   },
-  ontouchstart: function(){
+
+  ontouchstart: function() {
     if (this.anchor !== null && this.isTargeted !== false) {
       // var ret = confirm(this.anchor+" へ飛びます。宜しいですか？");
       // if (!ret) return
@@ -32,7 +30,8 @@ var AnchoredIcon = Class.create(PhyCircleSprite, {
     //    this.isTargeted = true;
     //};
   },
-  transAnim: function(){
+
+  transAnim: function() {
     var self = this;
     this.angularVelocity += 1200; //回転
     this.tl
@@ -51,6 +50,7 @@ var RotatingIcon = Class.create(PhyCircleSprite, {
     this.rad = 100; //回転半径
     this.center = {x:x, y:y};
   },
+
   onenterframe: function() {
     this.degree += 128;
     this.position = {
@@ -84,8 +84,10 @@ var RotatingRect = Class.create(PhyBoxSprite, {
     this.duration = 200; // 往来速度
     this.backAndForthAnim();
   },
+
   onenterframe: function(){
   },
+
   backAndForthAnim: function(){
     this.tl.moveTo(SCREEN_WIDTH-this.height*0.5, SCREEN_CENTER_Y/2, this.duration, enchant.Easing.QUAD_EASEINOUT)
     .moveTo(0+this.height*0.5, SCREEN_CENTER_Y/2, this.duration, enchant.Easing.QUAD_EASEINOUT)

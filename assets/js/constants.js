@@ -1,5 +1,5 @@
 //var SCREEN_WIDTH = (windowWidth > 480) ? 768 : 360;
-var SCREEN_WIDTH = window.innerWidth-20; //画面いっぱいだと横スクロールしてしまうため
+var SCREEN_WIDTH = window.innerWidth - 20; //画面いっぱいだと横スクロールしてしまうため
 var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;

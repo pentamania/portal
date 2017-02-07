@@ -1,40 +1,6 @@
-// extends
-(function(){
-  // Objectの拡張: http://qiita.com/phi/items/98975e1bb4995c1f1bcf
-  Object.defineProperty(Object.prototype, "forIn", {
-    value: function(fn, self) {
-      self = self || this;
-
-      Object.keys(this).forEach(function(key, index) {
-        var value = this[key];
-
-        fn.call(self, key, value, index);
-      }, this);
-    }
-  });
-
-  enchant.Group.prototype.addChildren = function(children) {
-    if (!Array.isArray(children)) children = Array.prototype.slice.call(arguments);
-    children.forEach(function(child) {
-      this.addChild(child);
-    }.bind(this))
-  };
-
-  enchant.Entity.prototype.setOrigin = function(x, y) {
-    this.originX = this.width * x || 0;
-    this.originY = this.height * y || 0;
-    return this;
-  };
-
-  enchant.Node.prototype.addChildTo = function(parent) {
-    parent.addChild(this);
-    return this;
-  };
-
-}());
 
 var PORTAL = PORTAL || {};
-PORTAL.app = function(anchorData) {
+PORTAL.start = function(anchorData) {
   // var field = document.getElementById("enchant-stage");
   // var fieldBounds = field.getBoundingClientRect(); //cssで余計なプロパティをつけないこと
 
@@ -66,12 +32,11 @@ PORTAL.app = function(anchorData) {
     // アイコン召喚
     anchorData.forIn(function(key, value) {
       var randPos = {
-        x: Math.floor (Math.random() * SCREEN_WIDTH),
-        y: Math.floor (Math.random() * SCREEN_HEIGHT)
+        x: Math.randint(SCREEN_WIDTH),
+        y: Math.randint(SCREEN_HEIGHT)
       };
-      var url = value.url;
       var frameIndex =  value.frameIndex;
-      var icon = new AnchoredIcon(randPos.x, randPos.y, iconImages, frameIndex, url);
+      var icon = new AnchoredIcon(randPos.x, randPos.y, iconImages, frameIndex, value.url);
       iconSprites.push(icon);
     });
 
