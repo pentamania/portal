@@ -1,236 +1,252 @@
-@import url('http://yui.yahooapis.com/3.15.0/build/cssreset/cssreset-min.css'); //reset
+// @import url('http://yui.yahooapis.com/3.15.0/build/cssreset/cssreset-min.css'); //reset
+
+ /* Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+--------------------------------------------------------------------------------------- */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 @import url('http://fonts.googleapis.com/css?family=Audiowide'); //webfont
-//@import url();
 
 // vars
 @footerH: 80px;
+@baseFontSize: 18px;
 @breakpoint_sp: 480px;
 @color_main: #3cce46;
 @color_main_d1: Darken(@color_main,10%);
 @color_main_l1: Lighten(@color_main,20%);
 @color_gray :#808080;
 
-.no-script{
-    font-size: 1.5em;
-    color: #fff;
-    text-align: center;
+// mixins
+.color-fixed-anchor(@color) {
+  &:link { color: @color; text-decoration:none;}
+  &:visited { color: @color; text-decoration:none; }
+  &:hover { color: @color; text-decoration:none; }
+  &:active { color: @color; text-decoration:none; }
+}
 
-    background: rgba(0, 255, 64, 0.5);
-    border: solid 3px #fff;
-    border-radius: 2px;
-    position: fixed;
-    left: 25%;
-    top: 30%;
-    right: 25%;
-    bottom: 50%;
-    z-index: 999;
-    padding: 5px;
+// theme
+.t-green {
+  background: @color_main;
+  color: white;
 }
-html,body{
-    font-family: "Lucida Grande", "segoe UI", "Hiragino Maru Gothic ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
-    height: 100% !important;  //for sticky footer
-    //@media screen and (max-width: @breakpoint_sp){ /*monitor-size :under 480px*/
-    //  min-width: 100%;
-    //}
+
+.no-script {
+  font-size: 1.5em;
+  color: #fff;
+  text-align: center;
+
+  background: rgba(0, 255, 64, 0.5);
+  border: solid 3px #fff;
+  border-radius: 2px;
+  position: fixed;
+  left: 25%;
+  top: 30%;
+  right: 25%;
+  bottom: 50%;
+  z-index: 999;
+  padding: 5px;
 }
+
+html,body {
+  font-family: "Lucida Grande", "segoe UI", "Hiragino Maru Gothic ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
+  height: 100% !important;  //for sticky footer
+  font-size: @baseFontSize;
+  //@media screen and (max-width: @breakpoint_sp){ /*monitor-size :under 480px*/
+  //  min-width: 100%;
+  //}
+}
+
 #wrapper {
-    min-height: 100% !important;
-    margin: 0 auto -@footerH;//Negative indent footer by it's height
-    &:after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-}
-footer,#wrapper:after {
-    height: @footerH;
-}
-a{
-    @linkColor: #FFF;
-    &:link { color: @linkColor; text-decoration:none;}
-    &:visited { color: @linkColor; text-decoration:none; }
-    &:hover { color: @linkColor; text-decoration:none; }
-    &:active { color: @linkColor; text-decoration:none; }
-}
-//.pre-header{
-//    min-height: 200px;
-//}
-header {
-    width: 100%;
-    background: limegreen;
-    overflow: hidden;
-    color: @color_gray;
-    position: relative;
-    h1{ //site Title
-        font-family: 'Audiowide', sans-serif;
-        font-size: 2em;
-        color: #fff;
-    }
-    h2{ //sub title
-
-    }
-    .header-info{//contact
-        font-family: 'Audiowide', sans-serif;
-        font-size: 1em;
-        color: #fff;
-        position: absolute;
-        right: 0;
-        top: 0;
-        //width: 10em;
-
-        padding: 2px;
-        ul{
-            font-size: 0.9em;
-        }
-        a{
-        }
-        @media screen and (max-width: @breakpoint_sp){
-            font-size: 0.5em;
-            position: relative;
-        }
-    }
-}//--header
-#enchant-background{
-    //background: #000;
-    //background-image: url("../images/bg-space_repX_bright.jpg");
-    background-image: url("../images/bg-space02_repX.jpg");
-    background-repeat: repeat-x;
-    //padding: 20px;
-}
-#enchant-stage{
-    margin: 0 auto;
-}
-nav{
+  min-height: 100% !important;
+  margin: 0 auto -@footerH;//Negative indent footer by it's height
+  &:after {
+    content: "";
     display: block;
-    //width: 80%;
-    //margin: 0 auto;
-    //&:after{
-    //    content: " ";
-    //    display: block;
-    //    clear: both;
-    //}
+    clear: both;
+  }
 }
-ul#links{
-    font-size: 20px;
-    //display: block;
-    //background: green;
-    height: 3em;
-    //margin: 0 auto;
-    text-align: center; // li centering
 
-    li{
-        font-family: 'Audiowide', sans-serif;
-        font-size: 1.0em;
-        color: white;
-
-        width: 7em;
-        display: inline-block;
-        //float: left; //inline-block時のセンタリング時はつけないこと
-        overflow: hidden;
-        margin: 5px 5px 5px 0;
-        //text-align: center;
-        ///display:inline;/zoom:1; /*lt IE8*/
-
-        background: #3cce46;
-        border-radius: 10px;
-        a{
-            //padding: .5em;
-            display: block;
-        }
-        &:hover {
-            background: #71ff71;
-        }
-        @media screen and (max-width: @breakpoint_sp){
-            min-width: 100%;
-        }
-    }//--li
+footer, #wrapper:after {
+  height: @footerH;
 }
-footer{
-    text-align: center;
-    font-size: .8em;
-    color: #fff;
-    background: #535353;
-    padding: 0.4em;
 
-}
-// common ===
-.page-header{
-    background: #3cce46;
+header {
+  width: 100%;
+  background: limegreen;
+  overflow: hidden;
+  color: @color_gray;
+  position: relative;
+
+  h1 { //site Title
     font-family: 'Audiowide', sans-serif;
     font-size: 2em;
     color: #fff;
-}
-.backHome{
-    margin: 0 auto;
-    background: #008080;
+  }
+
+  .header-info {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1em;
     color: #fff;
-    font-size: 1.2em;
-    padding: .3em;
     position: absolute;
-    bottom: 0;
-    a{
-        display: block;
+    right: 0;
+    top: 0;
+    //width: 10em;
+
+    padding: 2px;
+    ul {
+      font-size: 0.9em;
     }
-}
-// === common
-
-// games.html
-#main_games{
-    text-align: center;
-    margin: 0 auto;
-}
-ul.game-list{
-    padding: 10px;
-    >li{
-        display: inline-block;
-        box-sizing: border-box;
-        border: solid 4px @color_main_d1;
-        padding: 4px;
-        margin: 20px auto 0;
-        width: 75%;
-        //overflow: hidden;
-        transition: all .2s ease;
-        -webkit-transition: all .2s ease; //android 4.3-
-
-        img{
-            margin: 10px auto;
-            border: solid 4px @color_main_l1;
-            max-width: 210px;
-        }
-        .game-title{
-            letter-spacing: .1em;
-            font-size: 1.5em;
-            color: #fff;
-            background: #3cce46;
-        }
-        .game-info{
-            font-size: 1em;
-            color: #8e8e8e;
-        }
-
-        &:hover{
-            background: @color_main_l1;
-            border: solid 5px @color_main_l1;
-        }
-    }//--li
-
-    .tags{
-        li{
-            font-family: impact, sans-serif;
-            font-size: 0.8em;
-            float: left;
-            margin-right: .3em;
-            padding: .2em .3em;
-            display: inline-block;
-            box-sizing: border-box;
-            border-radius: 2px;
-            //border: solid 2px #808080;
-            background: @color_main;
-            color: #fff;
-            &:before{
-                content: "\002732";
-                margin-right: 3px;
-            }
-        }
+    @media screen and (max-width: @breakpoint_sp){
+      font-size: 0.5em;
+      position: relative;
     }
+  }
 }
+
+footer {
+  text-align: center;
+  font-size: .8em;
+  color: #fff;
+  background: #535353;
+  padding: 0.4em;
+}
+
+#enchant-background {
+  //background: #000;
+  //background-image: url("../images/bg-space_repX_bright.jpg");
+  background-image: url("../images/bg-space02_repX.jpg");
+  background-repeat: repeat-x;
+}
+
+#enchant-stage {
+  margin: 0 auto;
+}
+
+.p-link-list {
+  font-size: 20px;
+  //display: block;
+  //background: green;
+  // height: 3em;
+  text-align: center; // li centering
+
+  a {
+    .color-fixed-anchor(#FFF);
+    display: block;
+  }
+
+  li {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1.0em;
+    color: white;
+
+    width: 7em;
+    display: inline-block;
+    //float: left; //inline-block時のセンタリング時はつけないこと
+    overflow: hidden;
+    margin: 5px 5px 5px 0;
+    //text-align: center;
+    ///display:inline;/zoom:1; /*lt IE8*/
+    background: #3cce46;
+    border-radius: 10px;
+
+    &:hover {
+      background: #71ff71;
+    }
+
+    @media screen and (max-width: @breakpoint_sp){
+      min-width: 100%;
+    }
+  }
+}
+
+.p-carausel {
+  border: 1px solid gray;
+}
+
+// common ===
+.p-heading {
+  .t-green;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: .3rem;
+}
+
+
+// .page-header {
+//   background: #3cce46;
+//   font-family: 'Audiowide', sans-serif;
+//   font-size: 2em;
+//   color: #fff;
+// }
+
+// .backHome {
+//   margin: 0 auto;
+//   background: #008080;
+//   color: #fff;
+//   font-size: 1.2em;
+//   padding: .3em;
+//   position: absolute;
+//   bottom: 0;
+//   a {
+//     display: block;
+//   }
+// }
+
+// #main_games{
+//     text-align: center;
+//     margin: 0 auto;
+// }
+// ul.game-list{
+//     padding: 10px;
+//     >li{
+//         display: inline-block;
+//         box-sizing: border-box;
+//         border: solid 4px @color_main_d1;
+//         padding: 4px;
+//         margin: 20px auto 0;
+//         width: 75%;
+//         //overflow: hidden;
+//         transition: all .2s ease;
+//         -webkit-transition: all .2s ease; //android 4.3-
+
+//         img{
+//             margin: 10px auto;
+//             border: solid 4px @color_main_l1;
+//             max-width: 210px;
+//         }
+//         .game-title{
+//             letter-spacing: .1em;
+//             font-size: 1.5em;
+//             color: #fff;
+//             background: #3cce46;
+//         }
+//         .game-info{
+//             font-size: 1em;
+//             color: #8e8e8e;
+//         }
+
+//         &:hover{
+//             background: @color_main_l1;
+//             border: solid 5px @color_main_l1;
+//         }
+//     }//--li
+
+//     .tags{
+//         li{
+//             font-family: impact, sans-serif;
+//             font-size: 0.8em;
+//             float: left;
+//             margin-right: .3em;
+//             padding: .2em .3em;
+//             display: inline-block;
+//             box-sizing: border-box;
+//             border-radius: 2px;
+//             //border: solid 2px #808080;
+//             background: @color_main;
+//             color: #fff;
+//             &:before{
+//                 content: "\002732";
+//                 margin-right: 3px;
+//             }
+//         }
+//     }
+// }

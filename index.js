@@ -15,6 +15,17 @@ PATHS.forIn(function(key, value) {
   links.appendChild(li);
 });
 
+GAMES.forEach(function(value) {
+  var holder = document.getElementById('game-links');
+  var link = document.createElement("a");
+  link.href = value.url;
+  link.target = "_blank";
+  link.innerHTML = '<span>'+value.name+"</span>";
+  var li = document.createElement("li");
+  li.appendChild(link);
+  holder.appendChild(li);
+});
+
 window.onload = function() {
   PORTAL.start(PATHS);
 };
