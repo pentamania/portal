@@ -11,14 +11,14 @@ const gulp = require("gulp"),
 // });
 
 // html ==============================
-gulp.task('build:html', (cb)=> {
-  return gulp.src(['src/*.html'])
-  .pipe(gulp.dest('dist/'));
-})
+// gulp.task('build:html', (cb)=> {
+//   return gulp.src(['src/*.html'])
+//   .pipe(gulp.dest('dist/'));
+// })
 
-gulp.task('watch:html', (cb)=> {
-  return gulp.watch('src/*.html', ['build:html'])
-})
+// gulp.task('watch:html', (cb)=> {
+//   return gulp.watch('src/*.html', ['build:html'])
+// })
 
 // css ==============================
 gulp.task('build:css', (cb)=> {
@@ -32,24 +32,24 @@ gulp.task('watch:css', (cb)=> {
 })
 
 // js ==============================
-gulp.task('js:concat:lib', (cb)=> {
-  return gulp.src([
-    'src/assets/scripts/lib/*.js',
-    'src/assets/scripts/*.js'
-  ])
-  .pipe(concat('lib.js'))
-  .pipe(gulp.dest('tmp'));
-})
+// gulp.task('js:concat:lib', (cb)=> {
+//   return gulp.src([
+//     'src/assets/scripts/lib/*.js',
+//     'src/assets/scripts/*.js'
+//   ])
+//   .pipe(concat('lib.js'))
+//   .pipe(gulp.dest('tmp'));
+// })
 
-gulp.task('js:minify', ['js:concat:lib'], (cb)=> {
-  exec('npm run js:minify', (err, stdout, stderr)=> {
-    cb(err);
-  });
-})
+// gulp.task('js:minify', ['js:concat:lib'], (cb)=> {
+//   exec('npm run js:minify', (err, stdout, stderr)=> {
+//     cb(err);
+//   });
+// })
 
-gulp.task('watch:js', (cb)=> {
-  return gulp.watch('./src/**/*.js', ['js:minify']);
-})
+// gulp.task('watch:js', (cb)=> {
+//   return gulp.watch('./src/**/*.js', ['js:minify']);
+// })
 
 // その他アセット類 ==============================
 

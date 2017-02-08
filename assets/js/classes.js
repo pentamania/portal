@@ -130,3 +130,17 @@ var MyLabel =  Class.create(Label, {
     return this;
   }
 });
+
+var Bullet = Class.create(PhyCircleSprite, {
+  initialize: function (image, radius, frameIndex) {
+    PhyCircleSprite.call(this, radius, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
+    this.image = image;
+    this.frame = frameIndex || 0;
+    this.force = 22.0;
+  },
+
+  onenterframe: function() {
+    if (this.age > 200) this.destroy();
+  },
+
+});

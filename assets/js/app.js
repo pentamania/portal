@@ -10,12 +10,15 @@ PORTAL.start = function(anchorData) {
   core.preload(ASSETS)
   .onload = function() {
     var wallWidth = 2;
+    var rotatingBarHeight = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
+
     var iconSprites = [];
     var assets = core.assets;
     var scene = core.rootScene;
     scene.backgroundColor = 'rgba(0, 0, 0, 0)'; // 透明
     var world = new PhysicsWorld(0.0, 0.0); // 第一項目がｘ軸の重力、第二項目がｙ軸の重力
 
+    core.keybind('Z'.charCodeAt(0), 'z')
     // マウス: 空のsprite、うまく動作せず
     //var mouse = new Sprite(16, 16);
     //mouse.position = {x:0, y:0};
@@ -53,17 +56,41 @@ PORTAL.start = function(anchorData) {
     iconSprites.push(player);
     player.on('enterframe', function(e) {
       // 十字キー操作
-      var force = 0.5;
-      if (core.input.left) this.applyImpulse({ x: -force, y: 0 });
-      if (core.input.right) this.applyImpulse({ x: force, y: 0 });
-      if (core.input.up) this.applyImpulse({ x: 0, y: -force });
-      if (core.input.down) this.applyImpulse({ x: 0, y: force });
+      var force = 3.5;
+      if (core.input.left) this.angularVelocity -= force;
+      if (core.input.down) this.angularVelocity -= force;
+      if (core.input.up) this.angularVelocity += force;
+      if (core.input.right) this.angularVelocity += force;
+      // var force = 0.8;
+      // if (core.input.left) this.applyImpulse({ x: -force, y: 0 });
+      // if (core.input.right) this.applyImpulse({ x: force, y: 0 });
+      // if (core.input.up) this.applyImpulse({ x: 0, y: -force });
+      // if (core.input.down) this.applyImpulse({ x: 0, y: force });
     });
-    player.on('touchstart', function(){
-      var yukkuri = confirm("ゆっくりしていってね!!");
-      if (yukkuri) return;
-      location.href = "http://google.com";
-    });
+    // player.on('touchstart', function(){
+    //   var yukkuri = confirm("ゆっくりしていってね!!");
+    //   if (yukkuri) return;
+    //   location.href = "http://google.com";
+    // });
+
+    // なんか撃つ
+    core.on('keydown', function(e) {
+      if (core.input.z) {
+        var vec = {
+          x: Math.cos(player.rotation * Math.PI/180),
+          y: Math.sin(player.rotation * Math.PI/180)
+        };
+        var b = new Bullet(assets['yukkuri'], 16).addChildTo(scene);
+        b.position = { x: player.position.x+vec.x*20, y: player.position.y + vec.y*20 };
+        b.applyImpulse({ x: vec.x * b.force, y: vec.y * b.force });
+
+        // 反動
+        player.applyImpulse({
+          x: -vec.x * b.force * 0.5,
+          y: -vec.y * b.force * 0.5
+        });
+      }
+    })
 
     iconSprites.forEach(function(sprite) {
       sprite.on('enterframe', function(e){
@@ -92,7 +119,6 @@ PORTAL.start = function(anchorData) {
     var rightWall = new Wall(SCREEN_WIDTH, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT).addChildTo(scene);
 
     // 回転オブジェクト（x,y,幅,高さ,回転速度）
-    var rotatingBarHeight = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
     var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, rotatingBarHeight, 200).addChildTo(scene);
 
     // ラベル
@@ -110,7 +136,7 @@ PORTAL.start = function(anchorData) {
 
     // ヒント
     var label_aboutPlayer = new MyLabel(
-      "方向キーで操作",
+      "方向キーとzキーで操作だ！",
       SCREEN_WIDTH * 0.6,
       SCREEN_HEIGHT * 0.6
     ).addChildTo(scene)
