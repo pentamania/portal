@@ -3,7 +3,7 @@ var PORTAL = PORTAL || {};
 PORTAL.start = function(anchorData) {
   // var field = document.getElementById("enchant-stage");
   // var fieldBounds = field.getBoundingClientRect(); //cssで余計なプロパティをつけないこと
-  // var isTransed = false; // 遷移中
+  // var isTransed = false; // TODO・遷移中の移動を禁止する
 
   var core = new Core(SCREEN_WIDTH, SCREEN_HEIGHT);
   core.fps = 60;
@@ -13,8 +13,8 @@ PORTAL.start = function(anchorData) {
     var iconSprites = [];
     var assets = core.assets;
     var scene = core.rootScene;
-    scene.backgroundColor = 'rgba(150, 0, 150, 0)';
-    var world = new PhysicsWorld(0.0, 0.0); //第一項目がｘ軸の重力、第二項目がｙ軸の重力
+    scene.backgroundColor = 'rgba(0, 0, 0, 0)'; // 透明
+    var world = new PhysicsWorld(0.0, 0.0); // 第一項目がｘ軸の重力、第二項目がｙ軸の重力
 
     // マウス: 空のsprite、うまく動作せず
     //var mouse = new Sprite(16, 16);
@@ -31,7 +31,8 @@ PORTAL.start = function(anchorData) {
       var sprite = frames[key];
       if (!sprite) return;
 
-      var frameSize = sprite.sourceSize.w; // TEMP: 52
+       // フレームサイズは全て同じ前提 TEMP: 52
+      var frameSize = sprite.sourceSize.w;
       var frameIndex = Math.floor(sprite.frame.x / frameSize);
       var randPos = {
         x: Math.randint(SCREEN_WIDTH),
@@ -47,10 +48,10 @@ PORTAL.start = function(anchorData) {
     player.image = assets['yukkuri'];
     player.frame = 1;
     player.scale(2, 2);
-    player.position = {x: SCREEN_WIDTH/3, y:SCREEN_HEIGHT/3};
+    player.position = {x: SCREEN_WIDTH*0.5, y:SCREEN_HEIGHT*0.5};
     //var player = new AnchoredIcon(SCREEN_WIDTH/3, SCREEN_HEIGHT/3, iconImages, 3);
     iconSprites.push(player);
-    player.on('enterframe', function() {
+    player.on('enterframe', function(e) {
       // 十字キー操作
       var force = 0.5;
       if (core.input.left) this.applyImpulse({ x: -force, y: 0 });
