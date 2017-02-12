@@ -21,17 +21,16 @@
         </div>
       </header>
 
-      <div id="enchant-background">
-        <div id="enchant-stage"></div>
-      </div>
+      <section class="c-section">
+        <div id="enchant-background">
+          <div id="enchant-stage"></div>
+        </div>
+        <ul id="links" class="p-anchor-list"></ul>
+      </section>
 
-      <nav>
-        <ul id="links" class="p-link-list"></ul>
-      </nav>
-
-      <section>
-        <h2 class="p-heading"># GAME toka</h2>
-        <ul id="game-links" class="p-carausel"></ul>
+      <section class="c-section">
+        <gallery></gallery>
+        <!-- <ul id="game-links" class="p-carausel"></ul> -->
       </section>
     </div><!--wrapper-->
 
@@ -47,6 +46,7 @@
 
     <noscript class="no-script">javascriptを有効にすると幸せになれます Activate javascript to be happy.</noscript>
     <!--library-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.2.1/riot+compiler.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/enchant.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/Box2dWeb-2.1.a.3.js"></script>
 
@@ -56,6 +56,9 @@
 
     <script type="text/javascript" src="assets/js/classes.js"></script>
     <script type="text/javascript" src="assets/js/constants.js"></script>
+
+    <!--riot-tag-->
+    <script type="riot/tag" src="assets/tags.tag"></script>
 
     <script type="text/javascript" src="assets/js/app.js"></script>
     <script type="text/javascript" src="index.js"></script>

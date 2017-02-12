@@ -57,23 +57,39 @@ var PATHS = {
   //about: "http://pentamania.com/about",
 };
 
-var GAMES = [
-  {
-    "name": "リズミックレイン",
-    "descriptions": "シンプルな音ゲー",
-    "imagepath": "./assets/images/",
-    "url":"http://pentamania.github.io/rhythmic-rain/game/dist"
-  },{
-    "name": "ナズーリン・ザ・ダウザー",
-    "descriptions": "東方二次創作、モノ探しゲーム",
-    "url":"http://9leap.net/games/4692"
-  },{
-    "name": "ランダムに選ばれたお題の数字と同じ数字を選ぶゲーム",
-    "descriptions": "処女作。とても普通",
-    "url":""
-  },{
-    "name": "BBEMYBABYゲーム",
-    "descriptions": "トチ狂って作った謎ゲー",
-    "url":"https://pentamania.github.io/bbemybaby-game/"
-  },
-];
+(function(){
+  var assetPath = "./assets/images/works-thumbnail/";
+
+  var GAMES = [
+    {
+      "name": "リズミックレイン",
+      "descriptions": "シンプルな雰囲気音ゲー",
+      "imagepath": assetPath+"rrain.gif",
+      "url":"http://pentamania.github.io/rhythmic-rain/game/dist"
+    },
+    {
+      "name": "ナズーリン・ザ・ダウザー",
+      "descriptions": "東方二次創作、モノ探しミニゲーム",
+      "imagepath": assetPath+"naz-game.gif",
+      "url":"http://9leap.net/games/4692"
+    },
+    // {
+    //   "name": "ランダムに選ばれたお題の数字と同じ数字を選ぶゲーム",
+    //   "descriptions": "処女作。とても普通",
+    //   "url":""
+    // },
+    {
+      "name": "BBEMYBABYゲーム",
+      "descriptions": "例のあのクソコラを再現",
+      "imagepath": assetPath+"bbmb-game.gif",
+      "url":"https://pentamania.github.io/bbemybaby-game/"
+    },
+    {
+      "name": "ゲーム(仮)",
+      "descriptions": "人生これからだ",
+      "url": ""
+    },
+  ];
+
+  window.GAMES = GAMES;
+}())

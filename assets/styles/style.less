@@ -5,6 +5,7 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 @import url('http://fonts.googleapis.com/css?family=Audiowide'); //webfont
 
+
 // vars
 @footerH: 80px;
 @baseFontSize: 18px;
@@ -12,6 +13,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @color_main: #3cce46;
 @color_main_d1: Darken(@color_main,10%);
 @color_main_l1: Lighten(@color_main,20%);
+@color_accent: #5B40E5;
 @color_gray :#808080;
 
 // mixins
@@ -25,6 +27,14 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 // theme
 .t-green {
   background: @color_main;
+  color: white;
+}
+.t-lightgreen {
+  background: @color_main_l1;
+  color: white;
+}
+.t-blue {
+  background: @color_accent;
   color: white;
 }
 
@@ -43,6 +53,14 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   bottom: 50%;
   z-index: 999;
   padding: 5px;
+}
+
+a {
+  // とりあえず
+  .color-fixed-anchor(black);
+}
+* {
+  box-sizing: border-box;
 }
 
 html, body {
@@ -75,7 +93,7 @@ header {
   color: @color_gray;
   position: relative;
 
-  h1 { //site Title
+  h1 {
     font-family: 'Audiowide', sans-serif;
     font-size: 2em;
     color: #fff;
@@ -109,6 +127,10 @@ footer {
   padding: 0.4em;
 }
 
+.c-section {
+  margin-bottom: 1.5rem;
+}
+
 #enchant-background {
   //background: #000;
   //background-image: url("../images/bg-space_repX_bright.jpg");
@@ -120,11 +142,8 @@ footer {
   margin: 0 auto;
 }
 
-.p-link-list {
+.p-anchor-list {
   font-size: 20px;
-  //display: block;
-  //background: green;
-  // height: 3em;
   text-align: center; // li centering
 
   a {
@@ -132,23 +151,23 @@ footer {
     display: block;
   }
 
-  li {
+  >li {
     font-family: 'Audiowide', sans-serif;
     font-size: 1.0em;
     color: white;
+    transition: all 0.2s ease;
 
     width: 7em;
     display: inline-block;
+    padding: .2rem;
     //float: left; //inline-block時のセンタリング時はつけないこと
     overflow: hidden;
     margin: 5px 5px 5px 0;
-    //text-align: center;
-    ///display:inline;/zoom:1; /*lt IE8*/
     background: #3cce46;
-    border-radius: 10px;
+    border-radius: 4px;
 
     &:hover {
-      background: #71ff71;
+      .t-lightgreen();
     }
 
     @media screen and (max-width: @breakpoint_sp){
@@ -157,26 +176,62 @@ footer {
   }
 }
 
-.p-carausel {
-  border: 1px solid gray;
+.p-flex-gallery {
+  a {
+    .color-fixed-anchor(@color_accent);
+    display: block;
+    font-weight: 700;
+  }
+  display: -webkit-flex;
+  display: flex;
+  /*justify-content: center;*/
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  /*サイズ制限して中央表示*/
+  width: 90%;
+  margin: 0 auto;
+
+  > li{
+    /*flex系*/
+    /*flex-basis: 33.33%;*/
+    width: 33%;
+    align-items: center;
+    overflow: hidden;
+    /*float: left;*/
+    padding: .7rem;
+    /*margin: .4rem;*/
+    margin-bottom: .6%;
+    text-align: center;
+    /*border-radius: 2px;*/
+    background: #56E056;
+    transition: all 0.2s ease;
+
+    /* flex 未対応ブラウザ用 */
+    display: inline-block;
+
+    /*確認用*/
+    /*border: 1px solid gray;*/
+    @media screen and (max-width: @breakpoint_sp){
+      width: 100%;
+    }
+
+    &:hover {
+      .t-lightgreen();
+    }
+  }
 }
 
 // common ===
 .p-heading {
   .t-green;
   font-family: 'Audiowide', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   padding: .3rem;
+  margin-bottom: 1rem;
 }
 
-
-// .page-header {
-//   background: #3cce46;
-//   font-family: 'Audiowide', sans-serif;
-//   font-size: 2em;
-//   color: #fff;
-// }
 
 // .backHome {
 //   margin: 0 auto;

@@ -56,7 +56,7 @@ PORTAL.start = function(anchorData) {
     iconSprites.push(player);
     player.on('enterframe', function(e) {
       // 十字キー操作
-      var force = 3.5;
+      var force = 9.0;
       if (core.input.left) this.angularVelocity -= force;
       if (core.input.down) this.angularVelocity -= force;
       if (core.input.up) this.angularVelocity += force;
