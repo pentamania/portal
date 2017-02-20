@@ -3,12 +3,12 @@
   <ul class="p-flex-gallery">
     <li each={item, i in opts.items} class="t-green">
       <a href="{item.url}" target="_blank">
-        <div class="image-wrapper">
+        <div if="{item.imagepath}" class="image-wrapper">
           <img src="{item.imagepath}" alt={item.name}>
         </div>
         <div class="title">{item.name}</div>
       </a>
-      <div class="descriptions">{item.descriptions}</div>
+      <div if="{item.descriptions}" class="descriptions">{item.descriptions}</div>
     </li>
   </ul>
 
@@ -25,6 +25,7 @@
     .descriptions{
       padding: .5rem;
       font-size: .7rem;
+      line-height: 1rem;
     }
     .image-wrapper {
       width: 100%;
@@ -39,6 +40,20 @@
     }
   </style>
 </gallery>
+
+<simple-list>
+  <h2 class="p-heading">{opts.heading}</h2>
+  <ul class="p-list">
+    <li each={item, i in opts.items} class="t-green">
+      <a href="{item.url}" target="_blank">
+        <div class="title">{item.name}</div>
+      </a>
+      <div if="{item.descriptions}" class="descriptions">{item.descriptions}</div>
+    </li>
+  </ul>
+
+</simple-list>
+
 
 <someother>
   <h1>I'M BIG!</h1>

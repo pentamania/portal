@@ -3,8 +3,13 @@
 // http://www.gravity-works.jp/gravica/web/js/004374.html
 window.onunload = function(){};
 
+// Ready enchant field
+window.onload = function() {
+  PORTAL.start(SNS_LINK_LIST);
+};
+
 // create DOM link
-PATHS.forIn(function(key, value) {
+SNS_LINK_LIST.forIn(function(key, value) {
   //console.log([index, key, value].join(','));
   var link = document.createElement("a");
   link.href = value.url;
@@ -15,9 +20,8 @@ PATHS.forIn(function(key, value) {
   links.appendChild(li);
 });
 
-window.onload = function() {
-  PORTAL.start(PATHS);
-};
-
-riot.mount('gallery', {heading: "# GAME", items: GAMES});
-// riot.mount('someother');
+riot.compile(function() {
+  riot.mount('#gallery-game', 'gallery', {heading: "#ゲーム", items: GAME_LIST});
+  riot.mount('#gallery-application', 'gallery', {heading: "#ツール", items: APPLICATION_LIST});
+  riot.mount('#gallery-zatta', 'gallery', {heading: "#その他", items: ZATTA_LIST});
+});

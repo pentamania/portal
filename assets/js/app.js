@@ -123,7 +123,7 @@ PORTAL.start = function(anchorData) {
 
     // ラベル
     var label_info = new MyLabel(
-      "アイコンクリックで各サイトにジャンプ！",
+      "アイコンクリックで各サイトにジャンプ",
       SCREEN_WIDTH / 20,
       SCREEN_HEIGHT * 0.25
     ).addChildTo(scene)
@@ -136,7 +136,7 @@ PORTAL.start = function(anchorData) {
 
     // ヒント
     var label_aboutPlayer = new MyLabel(
-      "方向キーとzキーで操作だ！",
+      "方向キーとzキーで操作",
       SCREEN_WIDTH * 0.6,
       SCREEN_HEIGHT * 0.6
     ).addChildTo(scene)
