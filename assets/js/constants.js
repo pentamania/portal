@@ -83,7 +83,7 @@ var ASSETS = {
     // },
     {
       "name": "ゲーム(仮)",
-      "descriptions": "人生はつづく",
+      "descriptions": "人生",
       "url": ""
     },
   ];
@@ -107,11 +107,17 @@ var ASSETS = {
 
   var ZATTA = [
     {
+      "name" : "フラワーマスター",
+      "descriptions": "花",
+      "url" : "https://pentamania.github.io/flower-master/",
+    },
+    {
       "name" : "未完成パズルゲーム",
-      "url" : "https://pentamania.github.io/chem-puzzle/build",
+      "url" : "https://pentamania.github.io/chem-puzzle/build/",
     },
     // {
-    //   "name" : "フラワーマスター",
+    //   "name" : "SIIG Shadow",
+    //   "descriptions": "影",
     //   "url" : "",
     // },
   ];
