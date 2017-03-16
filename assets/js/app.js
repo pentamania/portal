@@ -19,7 +19,7 @@ PORTAL.start = function(anchorData) {
     var world = new PhysicsWorld(0.0, 0.0); // 第一項目がｘ軸の重力、第二項目がｙ軸の重力
 
     core.keybind('Z'.charCodeAt(0), 'z')
-    // マウス: 空のsprite、うまく動作せず
+    // マウスアイコン: 空のsprite、うまく動作せず
     //var mouse = new Sprite(16, 16);
     //mouse.position = {x:0, y:0};
     //mouse.image = new Surface(32, 32);
@@ -67,11 +67,13 @@ PORTAL.start = function(anchorData) {
       // if (core.input.up) this.applyImpulse({ x: 0, y: -force });
       // if (core.input.down) this.applyImpulse({ x: 0, y: force });
     });
-    // player.on('touchstart', function(){
-    //   var yukkuri = confirm("ゆっくりしていってね!!");
-    //   if (yukkuri) return;
-    //   location.href = "http://google.com";
-    // });
+    player.on('touchstart', function() {
+      // alert("zキーを押すと...？");
+      alert("ゆっくりしていってね！");
+      // var yukkuri = confirm("ゆっくりしていってね!!");
+      // if (yukkuri) return;
+      // location.href = "http://google.com";
+    });
 
     // なんか撃つ
     core.on('keydown', function(e) {
@@ -92,6 +94,7 @@ PORTAL.start = function(anchorData) {
       }
     })
 
+    // アイコンスプライト追加
     iconSprites.forEach(function(sprite) {
       sprite.on('enterframe', function(e){
         //ゆらゆらさせる
@@ -121,7 +124,7 @@ PORTAL.start = function(anchorData) {
     // 回転オブジェクト（x,y,幅,高さ,回転速度）
     var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, rotatingBarHeight, 200).addChildTo(scene);
 
-    // ラベル
+    // 説明ラベル
     var label_info = new MyLabel(
       "アイコンクリックで各サイトにジャンプ",
       SCREEN_WIDTH / 20,
@@ -134,20 +137,16 @@ PORTAL.start = function(anchorData) {
     label_info.width = SCREEN_WIDTH / 2;
     // label_info.height = SCREEN_HEIGHT / 8;
 
-    // ヒント
-    var label_aboutPlayer = new MyLabel(
-      "方向キーとzキーで操作",
-      SCREEN_WIDTH * 0.6,
-      SCREEN_HEIGHT * 0.6
-    ).addChildTo(scene)
-    .setOrigin(1.0, 0.5)
-    .setBaseRotation(-10)
-    .shakeAnim(1)
-    ;
-
-    // scene.addChildren([
-    //   floor, ceiling, leftWall, rightWall, rotatingBar,
-    // ]);
+    // // ヒントラベル: いらない？
+    // var label_aboutPlayer = new MyLabel(
+    //   "方向キーとzキーで操作",
+    //   SCREEN_WIDTH * 0.6,
+    //   SCREEN_HEIGHT * 0.6
+    // ).addChildTo(scene)
+    // .setOrigin(1.0, 0.5)
+    // .setBaseRotation(-10)
+    // .shakeAnim(1)
+    // ;
 
     scene.onenterframe = function(e){
       //物理シミュレーション内の時間を進める

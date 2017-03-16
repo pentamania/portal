@@ -17,6 +17,7 @@ var ASSETS = {
 ;(function(){
   var assetPath = "./assets/images/works-thumbnail/";
 
+  // キー名はスプライトシート情報と連動しているため、変更の際は注意する
   var linkList = {
     blog: {
       url: "http://pentamania.hatenablog.com/",
@@ -81,8 +82,8 @@ var ASSETS = {
     //   "url":""
     // },
     {
-      "name": "ゲーム(仮)",
-      "descriptions": "人生",
+      "name": "(仮)",
+      "descriptions": "なんか神ゲーが追加される予定です",
       "url": ""
     },
   ];
