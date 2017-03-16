@@ -48,7 +48,6 @@ var ASSETS = {
     },
     //apps: "http://pentamania.com/apps",
     //works: "http://pentamania.com/works",
-    //about: "http://pentamania.com/about",
   };
   window.SNS_LINK_LIST = linkList;
 
@@ -125,9 +124,9 @@ var ASSETS = {
     {
       "name" : "SIIG Shadow",
       "descriptions": "† 影 †",
-      "url" : "https://www47.atpages.jp/ptmania/works/shadow",
+      // https通信はIE, Edgeでは無効
+      "url" : "http://www47.atpages.jp/ptmania/works/shadow",
     },
-
   ];
   window.ZATTA_LIST = ZATTA;
 
