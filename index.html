@@ -53,7 +53,7 @@
         <a href="http://enchantjs.com/ja/">Enchant.js</a> /
         <a href="http://kassymemo.blogspot.jp/2011/12/enchantjsphysprite.html">Physprite</a>
       </p>
-      <!-- <span class="copyright">&#169; pentamania</span> -->
+      <span class="copyright">&#169; pentamania</span>
     </footer>
 
     <noscript class="no-script">javascriptを有効にすると幸せになれます Activate javascript to be happy.</noscript>
@@ -63,11 +63,15 @@
     <script type="text/javascript" src="assets/js/lib/Box2dWeb-2.1.a.3.js"></script>
 
     <!--plugins-->
-    <script type="text/javascript" src="assets/js/lib/plugins/PhySprite.enchant.js"></script>
-    <script type="text/javascript" src="assets/js/lib/plugins/extends.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/PhySprite.enchant.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/extends.js"></script>
 
-    <script type="text/javascript" src="assets/js/classes.js"></script>
+    <script type="text/javascript">
+      'use strict';
+      enchant();
+    </script>
     <script type="text/javascript" src="assets/js/constants.js"></script>
+    <script type="text/javascript" src="assets/js/components.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
 
     <!--riot-tag-->

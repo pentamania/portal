@@ -1,6 +1,7 @@
-'use strict';
-enchant();
 
+/**
+ * アンカー情報を持ったスプライトアイコン
+ */
 var AnchoredIcon = Class.create(PhyCircleSprite, {
   initialize: function (image, radius, frameIndex, anchor) {
     PhyCircleSprite.call(this, radius, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
@@ -38,7 +39,9 @@ var AnchoredIcon = Class.create(PhyCircleSprite, {
   }
 });
 
-// 回転するアイコン
+/**
+ * ある位置を軸に公転するスプライトアイコン
+ */
 var RotatingIcon = Class.create(PhyCircleSprite, {
   initialize: function (x, y){
     PhyCircleSprite.call(this, 16, STATIC_SPRITE, 1.0, 0.7, 2.0, true); //初期化
@@ -58,6 +61,9 @@ var RotatingIcon = Class.create(PhyCircleSprite, {
   }
 });
 
+/**
+ * 壁（スタティックな固定矩形）
+ */
 var Wall = Class.create(PhyBoxSprite, {
   initialize: function (x,y,width,height){
     PhyBoxSprite.call(this, width, height, STATIC_SPRITE, 1.0, 0.5, 0, true); //初期化
@@ -68,6 +74,9 @@ var Wall = Class.create(PhyBoxSprite, {
   }
 });
 
+/**
+ * 中心を軸に回転するダイナミック矩形
+ */
 var RotatingRect = Class.create(PhyBoxSprite, {
   initialize: function(x,y,width,height,radian){
     PhyBoxSprite.call(this, width, height, KINEMATIC_SPRITE, 1.0, 0.5, 0.3, true);
@@ -93,7 +102,9 @@ var RotatingRect = Class.create(PhyBoxSprite, {
   }
 });
 
-
+/**
+ * Label独自拡張
+ */
 var MyLabel =  Class.create(Label, {
   initialize: function(text, x, y, font, color) {
     Label.call(this, text);
@@ -131,6 +142,9 @@ var MyLabel =  Class.create(Label, {
   }
 });
 
+/**
+ * 弾
+ */
 var Bullet = Class.create(PhyCircleSprite, {
   initialize: function (image, radius, frameIndex) {
     PhyCircleSprite.call(this, radius, DYNAMIC_SPRITE, 1.0, 0.7, 0.6, true);
