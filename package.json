@@ -1,0 +1,27 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "description": "pentamania's portal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lessc": "lessc assets/styles/style.less assets/styles/style.css --clean-css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pentamania/portal.git"
+  },
+  "keywords": [
+    "enchant.js"
+  ],
+  "author": "pentamania",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pentamania/portal/issues"
+  },
+  "homepage": "https://github.com/pentamania/portal#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "less": "^2.7.2"
+  }
+}

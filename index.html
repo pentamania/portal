@@ -1,69 +1,100 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="IE=Edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-        <meta name="keyword" content="ポータルサイト, イラスト, ゲーム">
-        <meta name="description" content="pentamaniaのポータルサイト">
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-
-        <script>
-            //Objectの拡張: http://qiita.com/phi/items/98975e1bb4995c1f1bcf
-            //Box2dWebを読み込む前に実行する
-            Object.defineProperty(Object.prototype, "forIn", {
-                value: function(fn, self) {
-                    self = self || this;
-
-                    Object.keys(this).forEach(function(key, index) {
-                        var value = this[key];
-
-                        fn.call(self, key, value, index);
-                    }, this);
-                }
-            });
-        </script>
-        <title>portamania</title>
-        <link rel="shortcut icon" href="assets/images/favicon.ico" >
-        <link rel="stylesheet" href="assets/styles/style.css">
-    </head>
-    <body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="keyword" content="ポータルサイト, イラスト, ゲーム">
+    <meta name="description" content="pentamaniaのポータルサイト">
+    <title>pentamania</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" >
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <!--[if IE]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flexibility/1.0.6/flexibility.js"></script>
+    <![endif]-->
+  </head>
+  <body>
     <div id="wrapper">
-        <header>
-            <h1><a href="#">pentamania</a></h1>
-            <div class="header-info">
-                <ul class="contact">
-                    <li>contact >> pentmania_03(@)yahoo.co.jp</li>
-                </ul>
-            </div>
-        </header>
-        <div id="enchant-background">
-            <div id="enchant-stage"></div>
+      <header>
+        <h1>pentamania</h1>
+        <div class="header-info">
+          <ul class="contact">
+            <li>contact >> pentmania_03(@)yahoo.co.jp</li>
+          </ul>
         </div>
-        <nav>
-            <ul id="links"></ul>
-        </nav>
+      </header>
+
+      <section class="c-section">
+        <div id="enchant-background">
+          <div id="enchant-stage"></div>
+        </div>
+        <ul id="links" class="p-anchor-list"></ul>
+      </section>
+
+      <section class="c-section">
+        <div id="gallery-game"></div>
+        <!-- <ul id="game-links" class="p-carausel"></ul> -->
+      </section>
+
+      <section class="c-section">
+        <div id="gallery-application"></div>
+      </section>
+
+      <section class="c-section">
+        <div id="gallery-zatta"></div>
+      </section>
+
     </div><!--wrapper-->
-    <noscript class="no-script">javascriptを有効にすると幸せになれます Activate javascript to be happy :^)</noscript>
+
     <footer>
-        <span class="support-browser">閲覧推奨ブラウザ: firefox以外の最新ブラウザ(IE11,Chrome,Safari,Opera,etc.)<span>
-        <p class="powered">
-            Powered by
-            <a href="http://enchantjs.com/ja/">Enchant.js</a> /
-            <a href="http://kassymemo.blogspot.jp/2011/12/enchantjsphysprite.html">Physprite</a>
-        </p>
-        <!-- <span class="copyright">&#169; pentamania</span> -->
+      <span class="support-browser">閲覧推奨ブラウザ: 新しめのブラウザ(IE10+, Microsoft Edge, Chrome, Firefox, Safari, Opera, etc.)<span>
+      <p class="powered">
+        Powered by
+        <a href="http://enchantjs.com/ja/">Enchant.js</a> /
+        <a href="http://kassymemo.blogspot.jp/2011/12/enchantjsphysprite.html">Physprite</a>
+      </p>
+      <span class="copyright">&#169; pentamania</span>
     </footer>
-        <!--library-->
-        <script type="text/javascript" src="assets/libs/enchant.min.js"></script>
-        <script type="text/javascript" src="assets/libs/Box2dWeb-2.1.a.3.js"></script>
-        <!--plugin-->
-        <script type="text/javascript" src="assets/libs/box2d.enchant.js"></script>
-        <script type="text/javascript" src="assets/libs/PhySprite.enchant.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
-        <!-- [FC2 Analyzer] http://analyzer.fc2.com/  -->
-        <script language="javascript" src="http://analyzer55.fc2.com/ana/processor.php?uid=2131777" type="text/javascript"></script>
-        <noscript><div align="right"><img src="http://analyzer55.fc2.com/ana/icon.php?uid=2131777&ref=&href=&wid=0&hei=0&col=0" /></div></noscript>
-        <!-- [FC2 Analyzer]  -->
-    </body>
+
+    <noscript class="no-script">javascriptを有効にすると幸せになれます Activate javascript to be happy.</noscript>
+    <!--library-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.2.1/riot+compiler.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/enchant.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/Box2dWeb-2.1.a.3.js"></script>
+
+    <!--plugins-->
+    <script type="text/javascript" src="assets/js/plugins/PhySprite.enchant.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/extends.js"></script>
+
+    <script type="text/javascript">
+      'use strict';
+      enchant();
+    </script>
+    <script type="text/javascript" src="assets/js/constants.js"></script>
+    <script type="text/javascript" src="assets/js/components.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+
+    <!--riot-tag-->
+    <script type="riot/tag" src="assets/tags.tag"></script>
+
+    <!--main-->
+    <script type="text/javascript" src="index.js"></script>
+
+    <!--GA tracking code-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-69580107-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <!-- [FC2 Analyzer] http://analyzer.fc2.com/  -->
+    <!-- <script language="javascript" src="http://analyzer55.fc2.com/ana/processor.php?uid=2131777" type="text/javascript"></script> -->
+    <!-- <noscript><div align="right"><img src="http://analyzer55.fc2.com/ana/icon.php?uid=2131777&ref=&href=&wid=0&hei=0&col=0" /></div></noscript> -->
+    <!-- [FC2 Analyzer]  -->
+  </body>
 </html>
