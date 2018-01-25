@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lessc": "lessc assets/styles/style.less assets/styles/style.css --clean-css"
+    "lessc": "lessc src/styles/style.less assets/styles/style.css --clean-css"
   },
   "repository": {
     "type": "git",
