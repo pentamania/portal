@@ -4,8 +4,9 @@
   "description": "pentamania's portal site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lessc": "lessc src/styles/style.less assets/styles/style.css --clean-css"
+    "build": "npm run lessc",
+    "lessc": "lessc src/styles/style.less assets/styles/style.css --clean-css",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/pentamania/portal#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
     "less": "^2.7.2"
   }
 }
