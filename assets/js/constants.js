@@ -1,17 +1,36 @@
+
+/**
+ * params
+ */
 //var SCREEN_WIDTH = (windowWidth > 480) ? 768 : 360;
 var SCREEN_WIDTH = window.innerWidth - 20; //画面いっぱいだと横スクロールしてしまうため
 var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
-
+var PLAYER_FORCE = 3.2;
 var DEBUG_MODE = false;
 // DEBUG_MODE = true;
 
+var WALL_WIDTH = 2;
+var ROTATING_BAR_LENGTH = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
+
+
+/**
+ * アセットとか
+ */
+var FOX_LINES = [
+  "お腹すいた...",
+  "だるい...",
+  "ぷかぷか...",
+  "300点",
+  "あっ、UFO...",
+  "十字キーでぼくを操作できるの、知ってた？",
+  "きゅー",
+];
 var ASSETS = {
   spritemap: 'assets/images/spritesheet.json',
-  // icons: 'assets/images/icons_big.png',
   icons: 'assets/images/spritesheet.png',
-  yukkuri: 'assets/images/yukkuris.gif',
+  fox: 'assets/images/fox.png',
 };
 
 ;(function(){

@@ -1,16 +1,12 @@
 
 var PORTAL = PORTAL || {};
 PORTAL.start = function(anchorData) {
-  // var field = document.getElementById("enchant-stage");
-  // var fieldBounds = field.getBoundingClientRect(); //cssで余計なプロパティをつけないこと
-  // var isTransed = false; // TODO・遷移中の移動を禁止する
-
   var core = new Core(SCREEN_WIDTH, SCREEN_HEIGHT);
   core.fps = 60;
   core.preload(ASSETS)
   .onload = function() {
-    var wallWidth = 2;
-    var rotatingBarHeight = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
+    var field = document.getElementById("enchant-stage");
+    field.style.cursor = 'pointer';
 
     var iconSprites = [];
     var assets = core.assets;
@@ -18,15 +14,8 @@ PORTAL.start = function(anchorData) {
     scene.backgroundColor = 'rgba(0, 0, 0, 0)'; // 透明
     var world = new PhysicsWorld(0.0, 0.0); // 第一項目がｘ軸の重力、第二項目がｙ軸の重力
 
-    core.keybind('Z'.charCodeAt(0), 'z')
-    // マウスアイコン: 空のsprite、うまく動作せず
-    //var mouse = new Sprite(16, 16);
-    //mouse.position = {x:0, y:0};
-    //mouse.image = new Surface(32, 32);
-    //mouse.image.context.fillStyle = "red";
-    //mouse.image.context.fillRect(1, 1, 30, 30);
-    //mouse.position = {x:0 , y:0};
-    //scene.addChild(mouse);
+    // キー登録
+    core.keybind('Z'.charCodeAt(0), 'z');
 
     // アイコン召喚
     var frames = JSON.parse(assets['spritemap']).frames;
@@ -34,7 +23,7 @@ PORTAL.start = function(anchorData) {
       var sprite = frames[key];
       if (!sprite) return;
 
-       // フレームサイズは全て同じ前提 TEMP: 52
+       // フレームサイズは全て同じ前提
       var frameSize = sprite.sourceSize.w;
       var frameIndex = Math.floor(sprite.frame.x / frameSize);
       var randPos = {
@@ -47,56 +36,61 @@ PORTAL.start = function(anchorData) {
     });
 
     // player召喚
-    var player = new PhyCircleSprite(16, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
-    player.image = assets['yukkuri'];
-    player.frame = 1;
-    player.scale(2, 2);
-    player.position = {x: SCREEN_WIDTH*0.5, y:SCREEN_HEIGHT*0.5};
-    //var player = new AnchoredIcon(SCREEN_WIDTH/3, SCREEN_HEIGHT/3, iconImages, 3);
-    iconSprites.push(player);
+    // var player = new PhyCircleSprite(26, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
+    var player = new PhyBoxSprite(48, 52, DYNAMIC_SPRITE, 1.5, 0.7, 0.6, true);
+    player.image = assets['fox'];
+    player.position = {x: SCREEN_WIDTH * 0.5, y: SCREEN_HEIGHT * 0.5};
     player.on('enterframe', function(e) {
-      // 十字キー操作
-      var force = 9.0;
-      if (core.input.left) this.angularVelocity -= force;
-      if (core.input.down) this.angularVelocity -= force;
-      if (core.input.up) this.angularVelocity += force;
-      if (core.input.right) this.angularVelocity += force;
-      // var force = 0.8;
-      // if (core.input.left) this.applyImpulse({ x: -force, y: 0 });
-      // if (core.input.right) this.applyImpulse({ x: force, y: 0 });
-      // if (core.input.up) this.applyImpulse({ x: 0, y: -force });
-      // if (core.input.down) this.applyImpulse({ x: 0, y: force });
+      /* キー操作 */
+      // 回転と噴射パターン
+      // if (core.input.left) this.angularVelocity -= PLAYER_FORCE;
+      // if (core.input.down) this.angularVelocity -= PLAYER_FORCE;
+      // if (core.input.up) this.angularVelocity += PLAYER_FORCE;
+      // if (core.input.right) this.angularVelocity += PLAYER_FORCE;
+      // if (core.input.z) {
+      //  // なんか撃つ
+      //   var vec = {
+      //     x: Math.cos(player.rotation * Math.PI/180),
+      //     y: Math.sin(player.rotation * Math.PI/180)
+      //   };
+      //   var b = new Bullet(assets['yukkuri'], 16).addChildTo(scene);
+      //   b.position = { x: player.position.x+vec.x*20, y: player.position.y + vec.y*20 };
+      //   b.applyImpulse({ x: vec.x * b.force, y: vec.y * b.force });
+
+      //   // 反動
+      //   player.applyImpulse({
+      //     x: -vec.x * b.force * 0.5,
+      //     y: -vec.y * b.force * 0.5
+      //   });
+      // }
+
+      // 指定方向に加速
+      if (core.input.left) this.applyImpulse({ x: -PLAYER_FORCE, y: 0 });
+      if (core.input.right) this.applyImpulse({ x: PLAYER_FORCE, y: 0 });
+      if (core.input.up) this.applyImpulse({ x: 0, y: -PLAYER_FORCE });
+      if (core.input.down) this.applyImpulse({ x: 0, y: PLAYER_FORCE });
     });
     player.on('touchstart', function() {
-      // alert("zキーを押すと...？");
-      alert("ゆっくりしていってね！");
-      // var yukkuri = confirm("ゆっくりしていってね!!");
-      // if (yukkuri) return;
-      // location.href = "http://google.com";
+      var label = new MyLabel(
+        FOX_LINES.pick(), null, null, "20px bold", "#F801FE"
+      ).addChildTo(scene)
+      ;
+      label.moveTo(player.x - label.width/2, player.y)
+
+      label.tl
+      .delay(100)
+      // .moveBy(0, -100, 100, enchant.Easing.QUAD_EASEINOUT)
+      .tween({opacity: 0, time: 50})
+      .then(function() {
+        scene.removeChild(label)
+      })
+      // .tween({x:0, y:-100, time:60})
     });
+    iconSprites.push(player);
 
-    // なんか撃つ
-    core.on('keydown', function(e) {
-      if (core.input.z) {
-        var vec = {
-          x: Math.cos(player.rotation * Math.PI/180),
-          y: Math.sin(player.rotation * Math.PI/180)
-        };
-        var b = new Bullet(assets['yukkuri'], 16).addChildTo(scene);
-        b.position = { x: player.position.x+vec.x*20, y: player.position.y + vec.y*20 };
-        b.applyImpulse({ x: vec.x * b.force, y: vec.y * b.force });
-
-        // 反動
-        player.applyImpulse({
-          x: -vec.x * b.force * 0.5,
-          y: -vec.y * b.force * 0.5
-        });
-      }
-    })
-
-    // アイコンスプライト追加
+    // スプライト挙動
     iconSprites.forEach(function(sprite) {
-      sprite.on('enterframe', function(e){
+      sprite.on('enterframe', function(e) {
         //ゆらゆらさせる
         if (core.frame%2 === 0) {
           sprite.applyImpulse({ x: 0.2, y: 0.1 });
@@ -104,25 +98,19 @@ PORTAL.start = function(anchorData) {
           sprite.applyImpulse({ x: -0.2, y: -0.1 });
         }
       });
-      //マウスオーバー時に反応 うまくいかない
-      //if (sprite.intersect(mouse)) {
-      //    field.style.cursor = 'pointer'; //なぜか最後に追加されたスプライトのみ？反応
-      //}else{
-      //    field.style.cursor = 'default'; //マウスアウト時（通常時）
-      //};
 
       // まとめてaddchild
       scene.addChild(sprite);
     });
 
     // 天井、床、側カベ
-    var floor = new Wall(SCREEN_WIDTH/2, SCREEN_HEIGHT, SCREEN_WIDTH, wallWidth).addChildTo(scene);
-    var ceiling = new Wall(SCREEN_WIDTH/2, 0, SCREEN_WIDTH, wallWidth).addChildTo(scene);
-    var leftWall = new Wall(0, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT).addChildTo(scene);
-    var rightWall = new Wall(SCREEN_WIDTH, SCREEN_HEIGHT/2, wallWidth, SCREEN_HEIGHT).addChildTo(scene);
+    var floor = new Wall(SCREEN_WIDTH/2, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_WIDTH).addChildTo(scene);
+    var ceiling = new Wall(SCREEN_WIDTH/2, 0, SCREEN_WIDTH, WALL_WIDTH).addChildTo(scene);
+    var leftWall = new Wall(0, SCREEN_HEIGHT/2, WALL_WIDTH, SCREEN_HEIGHT).addChildTo(scene);
+    var rightWall = new Wall(SCREEN_WIDTH, SCREEN_HEIGHT/2, WALL_WIDTH, SCREEN_HEIGHT).addChildTo(scene);
 
     // 回転オブジェクト（x,y,幅,高さ,回転速度）
-    var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, rotatingBarHeight, 200).addChildTo(scene);
+    var rotatingBar = new RotatingRect(SCREEN_CENTER_X, SCREEN_CENTER_Y, 8, ROTATING_BAR_LENGTH, 200).addChildTo(scene);
 
     // 説明ラベル
     var label_info = new MyLabel(
@@ -137,30 +125,22 @@ PORTAL.start = function(anchorData) {
     label_info.width = SCREEN_WIDTH / 2;
     // label_info.height = SCREEN_HEIGHT / 8;
 
-    // // ヒントラベル: いらない？
-    // var label_aboutPlayer = new MyLabel(
-    //   "方向キーとzキーで操作",
-    //   SCREEN_WIDTH * 0.6,
-    //   SCREEN_HEIGHT * 0.6
-    // ).addChildTo(scene)
-    // .setOrigin(1.0, 0.5)
-    // .setBaseRotation(-10)
-    // .shakeAnim(1)
-    // ;
-
-    scene.onenterframe = function(e){
+    scene.onenterframe = function(e) {
       //物理シミュレーション内の時間を進める
       world.step(core.fps);
 
-      //rotatingBar.contact(function (sprite) {
-      //    sprite.applyImpulse({ x: 0, y: -0.5 }); //接触してきたスプライトに対して
+      // // 接触してきたスプライトに対して
+      // rotatingBar.contact(function (sprite) {
+      //    sprite.applyImpulse({ x: 0, y: -0.5 });
       //    if (rotatingBar.angularVelocity < 800) {
-      //        rotatingBar.angularVelocity += 1;
+      //      // 回転速度増加
+      //      rotatingBar.angularVelocity += 1;
       //    }
-      //});
-      //if (rotatingBar.angularVelocity > 120) {
+      // });
+      // if (rotatingBar.angularVelocity > 120) {
+      //   // 減速
       //    rotatingBar.angularVelocity -= 1;
-      //}
+      // }
     };
 
     // リサイズ対策
@@ -174,7 +154,7 @@ PORTAL.start = function(anchorData) {
       //floor.width = winWidth;
       //floor.x = 0;
       //scene.floor.destroy(); //ng
-      //var floor = new Wall(centerX, SCREEN_HEIGHT, SCREEN_WIDTH, wallWidth);
+      //var floor = new Wall(centerX, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_WIDTH);
       //rightWall.x = winWidth-20;
       //console.log(ceiling.x);
     // });
