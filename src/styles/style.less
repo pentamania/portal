@@ -1,5 +1,9 @@
 @import url('./vendor/reset.less');
 @import url('https://fonts.googleapis.com/css?family=Audiowide');
+@font-face {
+  font-family: "letorogo";
+  src: url("fonts/851letrogo.ttf");
+}
 
 // vars
 @footerH: 80px;
@@ -69,9 +73,11 @@ html, body {
   font-family: "Lucida Grande", "segoe UI", "Hiragino Maru Gothic ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
   height: 100% !important;  //for sticky footer
   font-size: @baseFontSize;
-  //@media screen and (max-width: @breakpoint_sp){ /*monitor-size :under 480px*/
-  //  min-width: 100%;
-  //}
+
+  @media screen and (max-width: @breakpoint_sp) {
+    font-size: @baseFontSize * 0.8;
+    min-width: 100%;
+  }
 }
 
 #wrapper {
@@ -96,14 +102,14 @@ header {
   position: relative;
 
   h1 {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 2em;
+    font-family: 'Audiowide', 'letorogo', sans-serif;
+    font-size: 1.5rem;
     color: #fff;
   }
 
   .header-info {
     font-family: 'Audiowide', sans-serif;
-    font-size: 1em;
+    font-size: 1rem;
     color: #fff;
     position: absolute;
     right: 0;
@@ -112,10 +118,10 @@ header {
 
     padding: 2px;
     ul {
-      font-size: 0.9em;
+      font-size: 0.9rem;
     }
     @media screen and (max-width: @breakpoint_sp){
-      font-size: 0.5em;
+      font-size: 0.5rem;
       position: relative;
     }
   }
@@ -158,11 +164,11 @@ footer {
 
   >li {
     font-family: 'Audiowide', sans-serif;
-    font-size: 1.0em;
+    font-size: 1.0rem;
     color: white;
     transition: all 0.2s ease;
 
-    width: 7em;
+    width: 7rem;
     display: inline-block;
     padding: .25rem;
     //float: left; //inline-block時のセンタリング時はつけないこと
@@ -239,7 +245,8 @@ footer {
 // common ===
 .p-heading {
   .t-green;
-  font-family: 'Audiowide', sans-serif;
+  // font-family: 'Audiowide', sans-serif;
+  font-family: 'Audiowide', 'letorogo', sans-serif;
   font-size: 1.4rem;
   text-align: center;
   padding: .3rem;
