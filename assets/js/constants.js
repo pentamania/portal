@@ -78,7 +78,7 @@ var ASSETS = {
     },
     {
       "name": "BBEMYBABYゲーム",
-      "descriptions": "例のあのクソコラを再現",
+      "descriptions": "例のあのクソコラ",
       "imagepath": assetPath+"bbmb-game.gif",
       "url": "https://pentamania.github.io/bbemybaby-game/"
     },
@@ -95,30 +95,55 @@ var ASSETS = {
       "url": "https://pentamania.github.io/find-shimauma-chan"
     },
     {
-      "name": "(仮)",
-      "descriptions": "なんか神ゲーが追加される予定です",
-      "url": ""
+      "name": "TOMA REVENGE(仮)",
+      "descriptions": "オーソドックスなサンプル用横STG",
+      "imagepath": assetPath+"toma-revenge.gif",
+      "url": "https://pentamania.github.io/phina-gl2d/examples/shooting/"
     },
   ];
   window.GAME_LIST = GAME_LIST;
 
   var APPLICATION_LIST = [
     {
-      "name": "PxB Editor",
+      "name": "PxB Map Editor",
       "descriptions": "某クロスでビーツな音ゲー風の譜面が作れるデスクトップアプリケーション",
       "imagepath": assetPath+"pxb-editor.gif",
       "url": "http://pentamania.hatenablog.com/entry/2017/03/16/155547"
     },
     {
       "name": "いらもじ",
-      "descriptions": "いらすとやさんのあの文字",
+      "descriptions": "いらすとやさんのあの文字を描き出すウェブアプリ",
       "imagepath": assetPath+"iramoji.gif",
       "url":"https://pentamania.github.io/iramoji"
-    }
+    },
+    {
+      "name": "jQuery SlidePuzzlize",
+      // "name": "スライドパズる",
+      "descriptions": "画像をスライドパズルに変えるネタ系jqueryプラグイン",
+      "imagepath": assetPath+"jq-puzzlize.gif",
+      "url":"https://pentamania.github.io/jquery-slidePuzzlize/"
+    },
+    {
+      "name": "phina talkbubble",
+      "descriptions": "フキダシを描画するためのphina.js用プラグイン",
+      "imagepath": assetPath+"phina-talkbubble.gif",
+      "url":"https://github.com/pentamania/phina-talkbubble"
+    },
+    {
+      "name": "PxB Playground(仮)",
+      "descriptions": "PxB Map Editorで作成した譜面をタッチパネル端末上でプレイしたりするウェブアプリ（試験中）",
+      "imagepath": assetPath+"pxb-playground.png",
+      "url": "https://pxb-playground.firebaseapp.com"
+    },
   ];
   window.APPLICATION_LIST = APPLICATION_LIST;
 
   var ZATTA = [
+    {
+      "name": "phina-gl2d",
+      "descriptions": "phina.jsのスプライトをwebGL描画するための実験的なプラグイン",
+      "url":"https://github.com/pentamania/phina-gl2d"
+    },
     {
       "name" : "デレマスアイドル紹介相関図",
       "descriptions": "第６回シンデレラガールズ総選挙のアレ",
@@ -131,7 +156,7 @@ var ASSETS = {
     },
     {
       "name" : "未完成パズルゲーム",
-      "descriptions": "一週間で作ろうとした",
+      "descriptions": "一週間で作ろうとしたが…",
       "url" : "https://pentamania.github.io/chem-puzzle/build/",
     },
     {
