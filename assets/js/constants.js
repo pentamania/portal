@@ -1,17 +1,36 @@
+
+/**
+ * params
+ */
 //var SCREEN_WIDTH = (windowWidth > 480) ? 768 : 360;
 var SCREEN_WIDTH = window.innerWidth - 20; //画面いっぱいだと横スクロールしてしまうため
 var SCREEN_HEIGHT = 280;
 var SCREEN_CENTER_X = SCREEN_WIDTH / 2;
 var SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
-
+var PLAYER_FORCE = 3.2;
 var DEBUG_MODE = false;
 // DEBUG_MODE = true;
 
+var WALL_WIDTH = 2;
+var ROTATING_BAR_LENGTH = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
+
+
+/**
+ * アセットとか
+ */
+var FOX_LINES = [
+  "お腹すいた...",
+  "だるい...",
+  "ぷかぷか...",
+  "300点",
+  "あっ、UFO...",
+  "十字キーでぼくを操作できるの、知ってた？",
+  "きゅー",
+];
 var ASSETS = {
   spritemap: 'assets/images/spritesheet.json',
-  // icons: 'assets/images/icons_big.png',
   icons: 'assets/images/spritesheet.png',
-  yukkuri: 'assets/images/yukkuris.gif',
+  fox: 'assets/images/fox.png',
 };
 
 ;(function(){
@@ -59,7 +78,7 @@ var ASSETS = {
     },
     {
       "name": "BBEMYBABYゲーム",
-      "descriptions": "例のあのクソコラを再現",
+      "descriptions": "例のあのクソコラ",
       "imagepath": assetPath+"bbmb-game.gif",
       "url": "https://pentamania.github.io/bbemybaby-game/"
     },
@@ -76,30 +95,55 @@ var ASSETS = {
       "url": "https://pentamania.github.io/find-shimauma-chan"
     },
     {
-      "name": "(仮)",
-      "descriptions": "なんか神ゲーが追加される予定です",
-      "url": ""
+      "name": "TOMA REVENGE(仮)",
+      "descriptions": "オーソドックスなサンプル用横STG",
+      "imagepath": assetPath+"toma-revenge.gif",
+      "url": "https://pentamania.github.io/phina-gl2d/examples/shooting/"
     },
   ];
   window.GAME_LIST = GAME_LIST;
 
   var APPLICATION_LIST = [
     {
-      "name": "PxB Editor",
+      "name": "PxB Map Editor",
       "descriptions": "某クロスでビーツな音ゲー風の譜面が作れるデスクトップアプリケーション",
       "imagepath": assetPath+"pxb-editor.gif",
       "url": "http://pentamania.hatenablog.com/entry/2017/03/16/155547"
     },
     {
       "name": "いらもじ",
-      "descriptions": "いらすとやさんのあの文字",
+      "descriptions": "いらすとやさんのあの文字を描き出すウェブアプリ",
       "imagepath": assetPath+"iramoji.gif",
       "url":"https://pentamania.github.io/iramoji"
-    }
+    },
+    {
+      "name": "jQuery SlidePuzzlize",
+      // "name": "スライドパズる",
+      "descriptions": "画像をスライドパズルに変えるネタ系jqueryプラグイン",
+      "imagepath": assetPath+"jq-puzzlize.gif",
+      "url":"https://pentamania.github.io/jquery-slidePuzzlize/"
+    },
+    {
+      "name": "phina talkbubble",
+      "descriptions": "フキダシを描画するためのphina.js用プラグイン",
+      "imagepath": assetPath+"phina-talkbubble.gif",
+      "url":"https://github.com/pentamania/phina-talkbubble"
+    },
+    {
+      "name": "PxB Playground(仮)",
+      "descriptions": "PxB Map Editorで作成した譜面をタッチパネル端末上でプレイしたりするウェブアプリ（試験中）",
+      "imagepath": assetPath+"pxb-playground.png",
+      "url": "https://pxb-playground.firebaseapp.com"
+    },
   ];
   window.APPLICATION_LIST = APPLICATION_LIST;
 
   var ZATTA = [
+    {
+      "name": "phina-gl2d",
+      "descriptions": "phina.jsのスプライトをwebGL描画するための実験的なプラグイン",
+      "url":"https://github.com/pentamania/phina-gl2d"
+    },
     {
       "name" : "デレマスアイドル紹介相関図",
       "descriptions": "第６回シンデレラガールズ総選挙のアレ",
@@ -112,7 +156,7 @@ var ASSETS = {
     },
     {
       "name" : "未完成パズルゲーム",
-      "descriptions": "一週間で作ろうとした",
+      "descriptions": "一週間で作ろうとしたが…",
       "url" : "https://pentamania.github.io/chem-puzzle/build/",
     },
     {
