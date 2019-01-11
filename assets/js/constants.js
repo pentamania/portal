@@ -71,6 +71,12 @@ var ASSETS = {
 
   var GAME_LIST = [
     {
+      "name": "初夢ラッキー詰め放題",
+      "descriptions": "正月っぽいゲームが作りたかった",
+      "imagepath": assetPath + "hatuyume-lucky.gif",
+      "url": "https://hatuyume-lucky.netlify.com/"
+    },
+    {
       "name": "リズミックレイン",
       "descriptions": "シンプルな雰囲気音ゲー",
       "imagepath": assetPath+"rrain.gif",
