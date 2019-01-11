@@ -98,7 +98,7 @@ var ASSETS = {
       "name": "TOMA REVENGE(仮)",
       "descriptions": "オーソドックスなサンプル用横STG",
       "imagepath": assetPath+"toma-revenge.gif",
-      "url": "https://pentamania.github.io/phina-gl2d/examples/shooting/"
+      "url": "https://pentamania.github.io/toma-shooting/"
     },
   ];
   window.GAME_LIST = GAME_LIST;
@@ -158,12 +158,6 @@ var ASSETS = {
       "name" : "未完成パズルゲーム",
       "descriptions": "一週間で作ろうとしたが…",
       "url" : "https://pentamania.github.io/chem-puzzle/build/",
-    },
-    {
-      "name" : "SIIG Shadow",
-      "descriptions": "† 影 †",
-      // https通信はIE, Edgeでは無効
-      "url" : "http://www47.atpages.jp/ptmania/works/shadow",
     },
   ];
   window.ZATTA_LIST = ZATTA;
