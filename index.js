@@ -21,7 +21,7 @@ SNS_LINK_LIST.forIn(function(key, value) {
 });
 
 riot.compile(function() {
-  riot.mount('#gallery-game', 'gallery', {heading: "#ゲーム", items: GAME_LIST});
-  riot.mount('#gallery-application', 'gallery', {heading: "#ツール", items: APPLICATION_LIST});
-  riot.mount('#gallery-zatta', 'simple-gallery', {heading: "#ソノタ", items: ZATTA_LIST});
+  riot.mount('#gallery-game', 'gallery', {heading: "ゲーム", items: GAME_LIST});
+  riot.mount('#gallery-application', 'gallery', {heading: "ツール", items: APPLICATION_LIST});
+  riot.mount('#gallery-zatta', 'gallery', { heading: "ソノタ", items: ZATTA_LIST });
 });

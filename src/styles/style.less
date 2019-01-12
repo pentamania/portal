@@ -1,67 +1,8 @@
 @import url('./vendor/reset.less');
-@import url('https://fonts.googleapis.com/css?family=Audiowide');
-@font-face {
-  font-family: "letorogo";
-  src: url("fonts/851letrogo.ttf");
-}
-
-// vars
-@footerH: 80px;
-@baseFontSize: 18px;
-@breakpoint_sp: 480px;
-@lineH: 18px;
-
-@color_main: #3cce46;
-@color_main_d1: Darken(@color_main,10%);
-@color_main_l1: Lighten(@color_main,20%);
-@color_accent: #5B40E5;
-@color_gray :#808080;
-
-// mixins
-.color-fixed-anchor(@color) {
-  &:link { color: @color; text-decoration:none;}
-  &:visited { color: @color; text-decoration:none; }
-  &:hover { color: @color; text-decoration:none; }
-  &:active { color: @color; text-decoration:none; }
-}
-
-// theme
-.t-green {
-  background: @color_main;
-  color: white;
-}
-.t-lightgreen {
-  background: @color_main_l1;
-  color: white;
-}
-.t-blue {
-  background: @color_accent;
-  color: white;
-}
-.t-darkGray {
-  background: #535353;
-  color: white;
-}
-
-.no-script {
-  font-size: 1.5em;
-  color: #fff;
-  text-align: center;
-
-  background: rgba(0, 255, 64, 0.5);
-  border: solid 3px #fff;
-  border-radius: 2px;
-  position: fixed;
-  left: 25%;
-  top: 30%;
-  right: 25%;
-  bottom: 50%;
-  z-index: 999;
-  padding: 5px;
-}
+@import url('https://unpkg.com/nes.css@1.0.0/css/nes.min.css');
+@import url('./config.less');
 
 a {
-  // とりあえず
   .color-fixed-anchor(black);
 }
 * {
@@ -70,9 +11,9 @@ a {
 }
 
 html, body {
-  font-family: "Lucida Grande", "segoe UI", "Hiragino Maru Gothic ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
-  height: 100% !important;  //for sticky footer
+  font-family: @fontFamilyBasic;
   font-size: @baseFontSize;
+  height: 100% !important;  // for sticky footer
 
   @media screen and (max-width: @breakpoint_sp) {
     font-size: @baseFontSize * 0.8;
@@ -80,19 +21,22 @@ html, body {
   }
 }
 
+// Sticky footer
 #wrapper {
+  font-family: @fontFamilyMain;
   min-height: 100% !important;
-  margin: 0 auto -@footerH;//Negative indent footer by it's height
+  margin: 0 auto -@footerH;
   &:after {
     content: "";
     display: block;
     clear: both;
   }
 }
-
 footer, #wrapper:after {
   height: @footerH;
 }
+
+// main--
 
 header {
   width: 100%;
@@ -102,19 +46,16 @@ header {
   position: relative;
 
   h1 {
-    font-family: 'Audiowide', 'letorogo', sans-serif;
     font-size: 1.5rem;
     color: #fff;
   }
 
   .header-info {
-    font-family: 'Audiowide', sans-serif;
     font-size: 1rem;
     color: #fff;
     position: absolute;
     right: 0;
     top: 0;
-    //width: 10em;
 
     padding: 2px;
     ul {
@@ -147,37 +88,31 @@ footer {
   background-image: url("../images/bg-space02_repX.jpg");
   background-repeat: repeat-x;
 }
-
 #enchant-stage {
   margin: 0 auto;
 }
 
 .p-anchor-list {
-  font-size: 20px;
   text-align: center; // li centering
 
-  a {
-    .color-fixed-anchor(#FFF);
-    display: block;
-    box-shadow: 1px 1px 0px 1px;
-  }
-
-  >li {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.0rem;
-    color: white;
-    transition: all 0.2s ease;
+  > li {
+    // font-family: @fontFamilyAccent;
+    // font-family: 'Audiowide', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
 
     width: 7rem;
     display: inline-block;
-    padding: .25rem;
-    //float: left; //inline-block時のセンタリング時はつけないこと
+    // padding: .25rem;
+    // float: left; //inline-block時のセンタリング時はつけないこと
     overflow: hidden;
     margin: 5px 5px 5px 0;
-    background: #3cce46;
-    // border-radius: 4px;
-    border-radius: 1px;
+    border-radius: 4px;
+    // border-radius: 1px;
 
+    // background: #3cce46;
+
+    transition: all 0.2s ease;
     &:hover {
       .t-lightgreen();
     }
@@ -187,14 +122,22 @@ footer {
       display: none;
     }
   }
+  a {
+    // .color-fixed-anchor(#FFF);
+    .color-fixed-anchor(@color_black);
+    display: block;
+    // box-shadow: 1px 1px 0px 1px;
+  }
 }
 
 .p-flex-gallery {
   a {
-    .color-fixed-anchor(@color_accent);
+    // .color-fixed-anchor(@color_accent);
+    .color-fixed-anchor(@color_main);
     display: block;
     font-weight: 700;
   }
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -209,27 +152,27 @@ footer {
   width: 95%;
   margin: 0 auto;
 
-  > li{
-    // @m: 100%*(5/100);
-    @m: 5px;
+  // > li{
+  .p-flex-gallery_item {
+    @mgn: 5px;
+
     /*flex系*/
     /*flex-basis: 33.33%;*/
     // width: 33.33% - @m*2;
-    width: calc(~'33.33% -' @m*2);
+    width: calc(~'33.33% -' @mgn*2);
+    margin: @mgn;
     padding: 0.6rem;
     // align-items: center;
-    overflow: hidden;
+    // overflow: hidden; // nes.cssに影響する
     // float: left;
-    margin: @m;
     text-align: center;
-    /*border-radius: 2px;*/
-    background: #56E056;
+    // background: #56E056;
     transition: all 0.2s ease;
 
     /* flex 未対応ブラウザ用 */
     display: inline-block;
 
-    /*確認用*/
+    // 確認用
     /*border: 1px solid gray;*/
 
     @media screen and (max-width: @breakpoint_sp){
@@ -243,14 +186,32 @@ footer {
 }
 
 // common ===
-.p-heading {
-  .t-green;
-  // font-family: 'Audiowide', sans-serif;
-  font-family: 'Audiowide', 'letorogo', sans-serif;
-  font-size: 1.4rem;
+
+// .p-heading {
+//   .t-green;
+//   // font-family: 'Audiowide', 'letorogo', sans-serif;
+//   font-size: 1.6rem;
+//   text-align: center;
+//   padding: .3rem;
+//   margin-bottom: 1rem;
+//   vertical-align: 40%;
+// }
+
+.no-script {
+  font-size: 1.5em;
+  color: #fff;
   text-align: center;
-  padding: .3rem;
-  margin-bottom: 1rem;
+
+  background: rgba(0, 255, 64, 0.5);
+  border: solid 3px #fff;
+  border-radius: 2px;
+  position: fixed;
+  left: 25%;
+  top: 30%;
+  right: 25%;
+  bottom: 50%;
+  z-index: 999;
+  padding: 5px;
 }
 
 

@@ -1,9 +1,12 @@
 <gallery>
-  <h2 class="p-heading">{opts.heading}</h2>
+
+  <!--  <h2 class="t-green">{opts.heading}</h2>  -->
+
   <ul class="p-flex-gallery">
-    <li each={item, i in opts.items} class="t-green">
+    <li each={item, i in opts.items} class="nes-container is-rounded is-dark p-flex-gallery_item">
+      <!--  <span>-{parent.opts.heading}-</span>  -->
       <a href="{item.url}" target="_blank">
-        <div class="image-wrapper">
+        <div class="image-wrapper" if="{item.imagepath}">
           <img src="{item.imagepath ? item.imagepath : NO_IMG_SRC}" alt="{item.name}">
         </div>
         <div class="title">{item.name}</div>
@@ -19,7 +22,7 @@
   <style scoped>
     :scope {
     }
-    .title{
+    .title {
       font-size: 1.1rem;
       margin-top: .3rem;
     }
@@ -42,7 +45,7 @@
   </style>
 </gallery>
 
-
+<!--  not used: remove later?  -->
 <simple-gallery>
   <h2 class="p-heading">{opts.heading}</h2>
   <ul class="p-flex-gallery">
