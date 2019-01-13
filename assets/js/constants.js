@@ -38,33 +38,38 @@ var ASSETS = {
 
   // キー名はスプライトシート情報と連動しているため、変更の際は注意する
   var linkList = {
+    twitter: {
+      // url: "https://twitter.com/p3ntamania", // 創作
+      url: "https://twitter.com/ptmnia", // PG、社会
+      label: "Twitter",
+      // frameIndex: 8
+    },
     blog: {
-      url: "http://pentamania.hatenablog.com/",
-      label: "BLOG",
+      url: "https://pentamania.hatenablog.com/",
+      label: "Blog",
       // frameIndex: 0
+    },
+    github: {
+      url: "http://github.com/pentamania",
+      label: "GitHub",
+    },
+    pixiv: {
+      url: "https://pixiv.me/pentamania",
+      label: "Pixiv",
     },
     // deviantArt: {
     //   url: "http://pentamania.deviantart.com/",
     //   frameIndex: 1
     // },
     drawr: {
-      url: "http://drawr.net/pentamania",
+      url: "https://drawr.net/pentamania",
+      label: "Drawr",
       // frameIndex: 2
     },
-    pixiv: {
-      url: "http://pixiv.me/pentamania",
-      // frameIndex: 6
-    },
     jsdoit: {
-      url: "http://jsdo.it/pentamania",
+      url: "https://jsdo.it/pentamania",
+      label: "jsdoit",
       // frameIndex: 7
-    },
-    twitter: {
-      url: "http://twitter.com/p3ntamania",
-      // frameIndex: 8
-    },
-    github: {
-      url: "http://github.com/pentamania",
     },
   };
   window.SNS_LINK_LIST = linkList;

@@ -1,3 +1,15 @@
+<link-list>
+  <!--  <ul class="p-anchor-list t-green">  -->
+  <ul class="p-anchor-list">
+    <li each={item, key in opts.items}>
+      <a href="{item.url}" target="_self">
+        <span>{item.label ? item.label : key}</span>
+      </a>
+    </li>
+  </ul>
+</link-list>
+
+
 <gallery>
 
   <!--  <h2 class="t-green">{opts.heading}</h2>  -->
