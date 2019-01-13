@@ -14,18 +14,14 @@ var DEBUG_MODE = false;
 var WALL_WIDTH = 2;
 var ROTATING_BAR_LENGTH = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
 
-
-/**
- * アセットとか
- */
+var MESSAGE_JUMP_TO_SNS_LINK = "アイコンクリックでジャンプ！";
 var FOX_LINES = [
   "お腹すいた...",
   "だるい...",
   "ぷかぷか...",
-  "300点",
   "あっ、UFO...",
+  "ぐえっ",
   "十字キーでぼくを操作できるの、知ってた？",
-  "きゅー",
 ];
 var ASSETS = {
   spritemap: 'assets/images/spritesheet.json',

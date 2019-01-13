@@ -69,19 +69,21 @@ PORTAL.start = function(anchorData) {
     });
     player.on('touchstart', function() {
       var label = new MyLabel(
-        FOX_LINES.pick(), null, null, "20px bold", "#F801FE"
-      ).addChildTo(scene)
+        FOX_LINES.pick(), null, null, null, "#F801FE"
+      )
+        .setFontSize(22)
+        .addChildTo(scene)
       ;
       label.moveTo(player.x - label.width/2, player.y)
 
       label.tl
-      .delay(100)
-      // .moveBy(0, -100, 100, enchant.Easing.QUAD_EASEINOUT)
-      .tween({opacity: 0, time: 50})
-      .then(function() {
-        scene.removeChild(label)
-      })
-      // .tween({x:0, y:-100, time:60})
+        .delay(100)
+        // .moveBy(0, -100, 100, enchant.Easing.QUAD_EASEINOUT)
+        .tween({opacity: 0, time: 50})
+        .then(function() {
+          scene.removeChild(label)
+        })
+        // .tween({x:0, y:-100, time:60})
     });
     iconSprites.push(player);
 
@@ -111,13 +113,14 @@ PORTAL.start = function(anchorData) {
 
     // 説明ラベル
     var label_info = new MyLabel(
-      "アイコンクリックで各サイトにジャンプ",
+      MESSAGE_JUMP_TO_SNS_LINK,
       SCREEN_WIDTH / 20,
       SCREEN_HEIGHT * 0.25
-    ).addChildTo(scene)
-    .setOrigin(0.2, 0.5)
-    .setBaseRotation(-8)
-    .shakeAnim(1)
+    )
+      .addChildTo(scene)
+      .setOrigin(0.2, 0.5)
+      .setBaseRotation(-8)
+      .shakeAnim(1)
     ;
     label_info.width = SCREEN_WIDTH / 2;
     // label_info.height = SCREEN_HEIGHT / 8;
