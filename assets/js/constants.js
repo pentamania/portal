@@ -40,14 +40,18 @@ var ASSETS = {
       label: "Twitter",
       // frameIndex: 8
     },
+    github: {
+      url: "http://github.com/pentamania",
+      label: "GitHub",
+    },
+    qiita: {
+      url: "https://qiita.com/pentamania/",
+      label: "Qiita",
+    },
     blog: {
       url: "https://pentamania.hatenablog.com/",
       label: "Blog",
       // frameIndex: 0
-    },
-    github: {
-      url: "http://github.com/pentamania",
-      label: "GitHub",
     },
     pixiv: {
       url: "https://pixiv.me/pentamania",
@@ -58,7 +62,7 @@ var ASSETS = {
     //   frameIndex: 1
     // },
     drawr: {
-      url: "https://drawr.net/pentamania",
+      url: "http://drawr.net/pentamania",
       label: "Drawr",
       // frameIndex: 2
     },
