@@ -6,9 +6,16 @@ window.onunload = function(){};
 // Ready enchant field
 window.onload = function() {
   PORTAL.start(SNS_LINK_LIST);
+  var bg = document.getElementById('enchant-background');
+  bg.style.backgroundImage = "url('./assets/images/bg-space02_repX.jpg')";
+  bg.style.backgroundRepeat = "repeat-x";
+
+  // 範囲を中央に寄せる
+  var stage = document.getElementById('enchant-stage');
+  stage.style.margin = "0 auto";
 };
 
-// create DOM link
+// create SNS DOM link
 SNS_LINK_LIST.forIn(function(key, value) {
   //console.log([index, key, value].join(','));
   var link = document.createElement("a");

@@ -2,6 +2,7 @@
 @import url('https://unpkg.com/nes.css@1.0.0/css/nes.min.css');
 @import url('./config.less');
 
+// デフォルトリンクカラー
 a {
   .color-fixed-anchor(black);
 }
@@ -82,16 +83,6 @@ footer {
   // }
 }
 
-#enchant-background {
-  //background: #000;
-  //background-image: url("../images/bg-space_repX_bright.jpg");
-  background-image: url("../images/bg-space02_repX.jpg");
-  background-repeat: repeat-x;
-}
-#enchant-stage {
-  margin: 0 auto;
-}
-
 .p-anchor-list {
   text-align: center; // li centering
 
@@ -131,19 +122,11 @@ footer {
 }
 
 .p-flex-gallery {
-  a {
-    // .color-fixed-anchor(@color_accent);
-    .color-fixed-anchor(@color_main);
-    display: block;
-    font-weight: 700;
-  }
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   -js-display : flex;
   display: flex;
-
   // justify-content: center;
   // justify-content: space-between;
   flex-wrap: wrap;
@@ -154,26 +137,21 @@ footer {
 
   // > li{
   .p-flex-gallery_item {
-    @mgn: 5px;
+    @_margin: 5px;
 
-    /*flex系*/
     /*flex-basis: 33.33%;*/
     // width: 33.33% - @m*2;
-    width: calc(~'33.33% -' @mgn*2);
-    margin: @mgn;
+    width: calc(~'33.33% -' @_margin*2);
+    margin: @_margin;
     padding: 0.6rem;
     // align-items: center;
     // overflow: hidden; // nes.cssに影響する
-    // float: left;
     text-align: center;
     // background: #56E056;
     transition: all 0.2s ease;
 
     /* flex 未対応ブラウザ用 */
     display: inline-block;
-
-    // 確認用
-    /*border: 1px solid gray;*/
 
     @media screen and (max-width: @breakpoint_sp){
       width: 100%;
@@ -183,6 +161,14 @@ footer {
       .t-lightgreen();
     }
   }
+
+  a {
+    // .color-fixed-anchor(@color_accent);
+    .color-fixed-anchor(@color_main);
+    display: block;
+    font-weight: 700;
+  }
+
 }
 
 // common ===

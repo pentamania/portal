@@ -5,9 +5,6 @@ PORTAL.start = function(anchorData) {
   core.fps = 60;
   core.preload(ASSETS)
   .onload = function() {
-    var field = document.getElementById("enchant-stage");
-    field.style.cursor = 'pointer';
-
     var iconSprites = [];
     var assets = core.assets;
     var scene = core.rootScene;
