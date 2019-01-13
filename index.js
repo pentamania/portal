@@ -5,10 +5,11 @@ window.onunload = function(){};
 
 // Ready enchant field
 window.onload = function() {
-  PORTAL.start(SNS_LINK_LIST);
   var bg = document.getElementById('enchant-background');
   bg.style.backgroundImage = "url('./assets/images/bg-space02_repX.jpg')";
   bg.style.backgroundRepeat = "repeat-x";
+  // bg.style.height = SCREEN_HEIGHT+"px";
+  PORTAL.start(SNS_LINK_LIST);
 
   // 範囲を中央に寄せる
   var stage = document.getElementById('enchant-stage');
