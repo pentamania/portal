@@ -34,16 +34,21 @@ html, body {
   }
 }
 footer, #wrapper:after {
+  font-family: @fontFamilyMain;
   height: @footerH;
 }
 
 // main--
 
 footer {
-  .t-darkGray;
+  color: white;
+  background-image: url("../images/bg-space02_repX.jpg");
   text-align: center;
-  font-size: .8rem;
-  padding: 0.4rem;
+  padding: 0.8rem;
+  a {
+    .color-fixed-anchor(@color_main);
+    text-decoration: underline;
+  }
 }
 
 .c-section {
