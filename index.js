@@ -3,18 +3,19 @@
 // http://www.gravity-works.jp/gravica/web/js/004374.html
 window.onunload = function(){};
 
-// Ready enchant field
-window.onload = function() {
+// Setup enchant field
+document.addEventListener('DOMContentLoaded', function (event) {
   var bg = document.getElementById('enchant-background');
-  bg.style.backgroundImage = "url('./assets/images/bg-space02_repX.jpg')";
+  bg.style.height = SCREEN_HEIGHT + "px";
   bg.style.backgroundRepeat = "repeat-x";
-  // bg.style.height = SCREEN_HEIGHT+"px";
-  PORTAL.start(SNS_LINK_LIST);
+  bg.style.backgroundImage = "url('./assets/images/bg-space02_repX.jpg')";
 
-  // 範囲を中央に寄せる
+  // 中央に寄せる
   var stage = document.getElementById('enchant-stage');
   stage.style.margin = "0 auto";
-};
+
+  PORTAL.start(SNS_LINK_LIST);
+});
 
 riot.compile(function() {
   riot.mount('link-list', { items: SNS_LINK_LIST });
