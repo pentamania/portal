@@ -112,12 +112,19 @@ var MyLabel =  Class.create(Label, {
     y = y || 0;
     this.moveTo(x, y);
     this.fontSize = 18;
-    this.font = font || this.fontSize+"px 'MSゴシック'";
+    this._fontFamily = "misaki, 'MSゴシック'";
+    this.font = font || this.fontSize +"px "+ this._fontFamily;
     this.color = color || 'white';
     this.textAlign = "center";
     this._baseRotation = 0;
     this._shakeing = false;
     this.height = this.fontSize * 1.25;
+  },
+
+  setFontSize: function(v) {
+    this.fontSize = v;
+    this.font = this.fontSize + "px " + this._fontFamily;
+    return this;
   },
 
   setBaseRotation: function(degree) {

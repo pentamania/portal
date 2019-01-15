@@ -14,18 +14,14 @@ var DEBUG_MODE = false;
 var WALL_WIDTH = 2;
 var ROTATING_BAR_LENGTH = (window.innerWidth > 480) ? SCREEN_HEIGHT*0.7 : SCREEN_HEIGHT*0.4;
 
-
-/**
- * アセットとか
- */
+var MESSAGE_JUMP_TO_SNS_LINK = "アイコンクリックでジャンプ！";
 var FOX_LINES = [
   "お腹すいた...",
   "だるい...",
   "ぷかぷか...",
-  "300点",
   "あっ、UFO...",
+  "ぐえっ",
   "十字キーでぼくを操作できるの、知ってた？",
-  "きゅー",
 ];
 var ASSETS = {
   spritemap: 'assets/images/spritesheet.json',
@@ -38,10 +34,28 @@ var ASSETS = {
 
   // キー名はスプライトシート情報と連動しているため、変更の際は注意する
   var linkList = {
+    twitter: {
+      // url: "https://twitter.com/p3ntamania", // 創作
+      url: "https://twitter.com/ptmnia", // PG、社会
+      label: "Twitter",
+      // frameIndex: 8
+    },
+    github: {
+      url: "http://github.com/pentamania",
+      label: "GitHub",
+    },
+    qiita: {
+      url: "https://qiita.com/pentamania/",
+      label: "Qiita",
+    },
     blog: {
-      url: "http://pentamania.hatenablog.com/",
-      label: "BLOG",
+      url: "https://pentamania.hatenablog.com/",
+      label: "Blog",
       // frameIndex: 0
+    },
+    pixiv: {
+      url: "https://pixiv.me/pentamania",
+      label: "Pixiv",
     },
     // deviantArt: {
     //   url: "http://pentamania.deviantart.com/",
@@ -49,27 +63,24 @@ var ASSETS = {
     // },
     drawr: {
       url: "http://drawr.net/pentamania",
+      label: "Drawr",
       // frameIndex: 2
     },
-    pixiv: {
-      url: "http://pixiv.me/pentamania",
-      // frameIndex: 6
-    },
     jsdoit: {
-      url: "http://jsdo.it/pentamania",
+      url: "https://jsdo.it/pentamania",
+      label: "jsdoit",
       // frameIndex: 7
-    },
-    twitter: {
-      url: "http://twitter.com/p3ntamania",
-      // frameIndex: 8
-    },
-    github: {
-      url: "http://github.com/pentamania",
     },
   };
   window.SNS_LINK_LIST = linkList;
 
   var GAME_LIST = [
+    {
+      "name": "初夢ラッキー詰め放題",
+      "descriptions": "正月っぽいゲームが作りたかった",
+      "imagepath": assetPath + "hatuyume-lucky.gif",
+      "url": "https://hatuyume-lucky.netlify.com/"
+    },
     {
       "name": "リズミックレイン",
       "descriptions": "シンプルな雰囲気音ゲー",
@@ -98,7 +109,7 @@ var ASSETS = {
       "name": "TOMA REVENGE(仮)",
       "descriptions": "オーソドックスなサンプル用横STG",
       "imagepath": assetPath+"toma-revenge.gif",
-      "url": "https://pentamania.github.io/phina-gl2d/examples/shooting/"
+      "url": "https://pentamania.github.io/toma-shooting/"
     },
   ];
   window.GAME_LIST = GAME_LIST;
@@ -151,19 +162,18 @@ var ASSETS = {
     },
     {
       "name" : "フラワーマスター",
-      "descriptions": "＊花＊",
+      "descriptions": "＊ 花 ＊",
       "url" : "https://pentamania.github.io/flower-master/",
     },
     {
-      "name" : "未完成パズルゲーム",
-      "descriptions": "一週間で作ろうとしたが…",
+      "name" : "Chem-Pzl(仮)",
+      "descriptions": "試作品パズルゲーム",
       "url" : "https://pentamania.github.io/chem-puzzle/build/",
     },
     {
-      "name" : "SIIG Shadow",
-      "descriptions": "† 影 †",
-      // https通信はIE, Edgeでは無効
-      "url" : "http://www47.atpages.jp/ptmania/works/shadow",
+      "name": "スペーストマピヨ",
+      "descriptions": "試作品3D奥面スクロールSTG",
+      "url": "https://runstant.com/pentamania/projects/b18a426f",
     },
   ];
   window.ZATTA_LIST = ZATTA;

@@ -1,0 +1,54 @@
+// -- webfont setup --
+// @import url('https://fonts.googleapis.com/css?family=Audiowide');
+// @font-face {
+//   font-family: "letorogo";
+//   src: url("fonts/851letrogo.ttf");
+// }
+@font-face {
+  font-family: "misaki";
+  src: url("fonts/misaki_gothic.ttf");
+}
+
+// -- vars --
+@footerH: 80px;
+@baseFontSize: 18px;
+@breakpoint_sp: 480px;
+@lineH: 20px;
+@fontFamilyBasic: "Lucida Grande", "segoe UI", "Hiragino Maru Gothic ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
+@fontFamilyMain: 'misaki', 'sans-serif';
+// @fontFamilyAccent: 'Audiowide', sans-serif;
+// @fontFamilyMain: 'Audiowide', 'letorogo', sans-serif;
+
+// @color_main: #3cce46;
+@color_main: #59cda1;
+@color_main_d1: Darken(@color_main, 10%);
+@color_main_l1: Lighten(@color_main, 20%);
+@color_accent: #5B40E5;
+@color_gray :#808080;
+@color_black: #3b3c4a;
+
+// -- mixins --
+.color-fixed-anchor(@color) {
+  &:link { color: @color; text-decoration:none;}
+  &:visited { color: @color; text-decoration:none; }
+  &:hover { color: @color; text-decoration:none; }
+  &:active { color: @color; text-decoration:none; }
+}
+
+// -- themes --
+.t-green {
+  background: @color_main;
+  color: white;
+}
+.t-lightgreen {
+  background: @color_main_l1;
+  color: white;
+}
+.t-blue {
+  background: @color_accent;
+  color: white;
+}
+.t-darkGray {
+  background: #535353;
+  color: white;
+}
