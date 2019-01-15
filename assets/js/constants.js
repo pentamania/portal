@@ -162,13 +162,18 @@ var ASSETS = {
     },
     {
       "name" : "フラワーマスター",
-      "descriptions": "＊花＊",
+      "descriptions": "＊ 花 ＊",
       "url" : "https://pentamania.github.io/flower-master/",
     },
     {
-      "name" : "未完成パズルゲーム",
-      "descriptions": "一週間で作ろうとしたが…",
+      "name" : "Chem-Pzl(仮)",
+      "descriptions": "試作品パズルゲーム",
       "url" : "https://pentamania.github.io/chem-puzzle/build/",
+    },
+    {
+      "name": "スペーストマピヨ",
+      "descriptions": "試作品3D奥面スクロールSTG",
+      "url": "https://runstant.com/pentamania/projects/b18a426f",
     },
   ];
   window.ZATTA_LIST = ZATTA;
