@@ -10,41 +10,29 @@
 </link-list>
 
 
-<gallery>
-
-  <!--  <h2 class="t-green">{opts.heading}</h2>  -->
-
-  <ul class="p-flex-gallery">
-    <li each={item, i in opts.items} class="nes-container is-rounded is-dark p-flex-gallery_item">
-      <!--  <span>-{parent.opts.heading}-</span>  -->
-      <a href="{item.url}" target="_blank">
-        <div class="image-wrapper" if="{item.imagepath}">
-          <img
-            data-src="{item.imagepath}"
-            alt="{item.name}"
-            onload={onImageLoad}
-            style="display: none"
-          >
-          <div ref="{'img_loader_'+i}" class="loader">Loading...</div>
-        </div>
-        <div class="title">{item.name}</div>
-      </a>
-      <div if="{item.descriptions}" class="description">{item.descriptions}</div>
-    </li>
-  </ul>
+<loader-mixed-img>
+  <div class="image-wrapper">
+    <img
+      ref="img"
+      data-src="{opts.imagepath}"
+      alt="{opts.imagename}"
+      onload={onImageLoad}
+      style="display: none"
+    >
+    <div ref="img_loader" class="loader">Loading...</div>
+  </div>
 
   <script type="text/javascript">
     var refs = this.refs;
 
     this.on('mount', function() {
-      Array.prototype.forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
-        img.setAttribute('src', img.getAttribute('data-src'));
-      })
+      var img = refs['img'];
+      img.setAttribute('src', img.getAttribute('data-src'));
     });
 
     this.onImageLoad = function(e) {
       var img = e.target;
-      var loader = refs['img_loader_'+e.item.i];
+      var loader = refs['img_loader'];
       img.style.display = "inline";
       img.removeAttribute('data-src');
       loader.parentNode.removeChild(loader);
@@ -52,15 +40,6 @@
   </script>
 
   <style scoped>
-    .title {
-      font-size: 1.1rem;
-      margin-top: .3rem;
-    }
-    .description {
-      padding: .5rem;
-      font-size: .7rem;
-      line-height: 1rem;
-    }
     .image-wrapper {
       width: 100%;
       max-width: 160px;
@@ -146,34 +125,36 @@
         box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
       }
     }
-
   </style>
-</gallery>
+</loader-mixed-img>
 
-<!--  not used: remove later?  -->
-<simple-gallery>
-  <h2 class="p-heading">{opts.heading}</h2>
+
+<gallery>
+  <!--  <h2 class="t-green">{opts.heading}</h2>  -->
   <ul class="p-flex-gallery">
-    <li each={item, i in opts.items} class="t-green">
+    <li each={item, i in opts.items} class="nes-container is-rounded is-dark p-flex-gallery_item">
+      <!--  <span>-{parent.opts.heading}-</span>  -->
       <a href="{item.url}" target="_blank">
+        <loader-mixed-img
+          if="{item.imagepath}"
+          imagepath="{item.imagepath}"
+          imagename="{item.name}"
+        />
         <div class="title">{item.name}</div>
       </a>
-      <div if="{item.descriptions}" class="descriptions">{item.descriptions}</div>
+      <div if="{item.descriptions}" class="description">{item.descriptions}</div>
     </li>
   </ul>
-
-  <script type="text/javascript">
-  </script>
 
   <style scoped>
     .title {
       font-size: 1.1rem;
       margin-top: .3rem;
     }
-    .descriptions {
+    .description {
       padding: .5rem;
       font-size: .7rem;
       line-height: 1rem;
     }
   </style>
-</simple-gallery>
+</gallery>
