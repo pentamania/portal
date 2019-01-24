@@ -4,7 +4,8 @@
   "description": "pentamania's portal site",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lessc",
+    "build": "npm run lessc & npm run gifmin",
+    "gifmin": "node build/optimize-gif.js",
     "lessc": "lessc src/styles/style.less assets/styles/style.css --clean-css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/pentamania/portal#readme",
   "devDependencies": {
+    "gifsicle": "^4.0.1",
     "less": "^2.7.2"
   }
 }
